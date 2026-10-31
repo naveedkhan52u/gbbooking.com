@@ -935,46 +935,78 @@
 
     <!-- INTERACTIVE JAVASCRIPT FOR DRAWER, CAROUSEL & ACTIONS -->
     <script>
-        // 1. Gutenberg Drawer Toggle Logic
+        // 1. Accessible mobile drawer controls
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const closeDrawerBtn = document.getElementById('closeDrawerBtn');
         const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerPanel = mobileDrawer?.firstElementChild;
         const drawerLinks = document.querySelectorAll('.drawer-link');
 
         function openMenu() {
-            if (mobileDrawer) mobileDrawer.classList.remove('hidden');
+            if (!mobileDrawer) return;
+            mobileDrawer.classList.remove('hidden');
+            mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+            closeDrawerBtn?.focus();
         }
 
         function closeMenu() {
-            if (mobileDrawer) mobileDrawer.classList.add('hidden');
+            if (!mobileDrawer) return;
+            mobileDrawer.classList.add('hidden');
+            mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            mobileMenuBtn?.focus();
         }
 
-        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMenu);
-        if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeMenu);
-        
-        drawerLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
+        mobileMenuBtn?.setAttribute('aria-controls', 'mobileDrawer');
+        mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn?.addEventListener('click', openMenu);
+        closeDrawerBtn?.addEventListener('click', closeMenu);
+
+        mobileDrawer?.addEventListener('click', (event) => {
+            if (event.target === mobileDrawer) closeMenu();
         });
 
-        // 2. Dynamic Hero Banner Slider (2-second interval auto-play)
+        drawerPanel?.addEventListener('click', (event) => event.stopPropagation());
+        drawerLinks.forEach(link => link.addEventListener('click', () => {
+            mobileDrawer?.classList.contains('hidden') || closeMenu();
+        }));
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && mobileDrawer && !mobileDrawer.classList.contains('hidden')) {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.matchMedia('(min-width: 768px)').matches && mobileDrawer && !mobileDrawer.classList.contains('hidden')) {
+                mobileDrawer.classList.add('hidden');
+                document.body.style.overflow = '';
+                mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // 2. Hero carousel: readable timing, accessible controls, and pause behavior
         let currentSlide = 0;
-        const totalSlides = 5;
         const heroTrack = document.getElementById('heroTrack');
+        const slides = heroTrack ? Array.from(heroTrack.children) : [];
+        const totalSlides = slides.length;
         const dots = document.querySelectorAll('.dot');
-        let slideInterval;
+        const heroContainer = heroTrack?.parentElement;
+        let slideInterval = null;
+        const carouselDelay = 5000;
 
         function updateSlider() {
-            if (heroTrack) {
-                heroTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-            }
+            if (!heroTrack || !totalSlides) return;
+            currentSlide = (currentSlide + totalSlides) % totalSlides;
+            heroTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+
             dots.forEach((dot, idx) => {
-                if (idx === currentSlide) {
-                    dot.classList.remove('bg-white/50');
-                    dot.classList.add('bg-white', 'w-4');
-                } else {
-                    dot.classList.remove('bg-white', 'w-4');
-                    dot.classList.add('bg-white/50');
-                }
+                const active = idx === currentSlide;
+                dot.classList.toggle('bg-white', active);
+                dot.classList.toggle('w-4', active);
+                dot.classList.toggle('bg-white/50', !active);
+                dot.setAttribute('aria-current', active ? 'true' : 'false');
             });
         }
 
@@ -989,60 +1021,106 @@
         }
 
         function setSlide(index) {
+            if (!Number.isInteger(index) || index < 0 || index >= totalSlides) return;
             currentSlide = index;
             updateSlider();
             resetTimer();
         }
 
+        function stopTimer() {
+            if (slideInterval) clearInterval(slideInterval);
+            slideInterval = null;
+        }
+
         function startTimer() {
-            slideInterval = setInterval(nextSlide, 2000); // 2 Seconds Auto Play
+            stopTimer();
+            if (totalSlides > 1 && !document.hidden) {
+                slideInterval = setInterval(nextSlide, carouselDelay);
+            }
         }
 
         function resetTimer() {
-            clearInterval(slideInterval);
             startTimer();
         }
 
-        // Initialize slider timer on load
+        heroContainer?.addEventListener('mouseenter', stopTimer);
+        heroContainer?.addEventListener('mouseleave', startTimer);
+        heroContainer?.addEventListener('focusin', stopTimer);
+        heroContainer?.addEventListener('focusout', (event) => {
+            if (!heroContainer.contains(event.relatedTarget)) startTimer();
+        });
+        document.addEventListener('visibilitychange', () => {
+            document.hidden ? stopTimer() : startTimer();
+        });
+
         window.addEventListener('load', () => {
             updateSlider();
             startTimer();
         });
 
-        // 3. Search & Interaction Handlers
+        // 3. Search demo: filter the existing sample cards without changing their design
         function triggerSearch() {
-            const service = document.getElementById('serviceInput').value;
-            const area = document.getElementById('areaSelect').value;
-            
-            let message = "Searching GBbooking";
-            if (service) message += ` for "${service}"`;
-            if (area) message += ` in ${area}`;
-            showToast(message + "...");
+            const service = (document.getElementById('serviceInput')?.value || '').trim().toLowerCase();
+            const area = (document.getElementById('areaSelect')?.value || '').trim().toLowerCase();
+            const cards = Array.from(document.querySelectorAll('#hotels .mobile-snap-card, #transport .mobile-snap-card, #home-services .mobile-snap-card'));
+            let matches = 0;
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const serviceMatch = !service || service.split(/\\s+/).every(term => text.includes(term));
+                const areaMatch = !area || text.includes(area);
+                const visible = serviceMatch && areaMatch;
+                card.classList.toggle('hidden', !visible);
+                if (visible) matches++;
+            });
+
+            ['hotels', 'transport', 'home-services'].forEach(id => {
+                const section = document.getElementById(id);
+                if (!section) return;
+                const visibleCards = section.querySelectorAll('.mobile-snap-card:not(.hidden)').length;
+                section.classList.toggle('hidden', visibleCards === 0);
+            });
+
+            showToast(matches
+                ? `Showing ${matches} matching service ${matches === 1 ? 'listing' : 'listings'}.`
+                : 'No matching sample listings. Try another service or area.');
         }
 
         function showDetails(serviceTitle) {
-            showToast(`Opening details for: ${serviceTitle}`);
+            showToast(`Details for ${serviceTitle} will be available when provider pages are connected.`);
         }
 
         function bookNow(serviceTitle) {
-            showToast(`Redirecting to instant booking for: ${serviceTitle}`);
+            showToast(`Booking for ${serviceTitle} is not live in this frontend demo yet.`);
         }
 
-        // Custom Toast Notification System (replaces standard browser alert)
+        // Safe toast rendering: user-entered text is never interpreted as HTML
+        let toastTimeout;
+        let toastFadeTimeout;
         function showToast(text) {
             const existingToast = document.getElementById('gbToast');
             if (existingToast) existingToast.remove();
+            clearTimeout(toastTimeout);
+            clearTimeout(toastFadeTimeout);
 
             const toast = document.createElement('div');
             toast.id = 'gbToast';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
             toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-xl z-50 flex items-center space-x-2 transition-all duration-300';
-            toast.innerHTML = `<i class="fa-solid fa-circle-check text-gbGreen"></i><span>${text}</span>`;
+
+            const icon = document.createElement('i');
+            icon.className = 'fa-solid fa-circle-info text-gbGreen';
+            icon.setAttribute('aria-hidden', 'true');
+            const message = document.createElement('span');
+            message.textContent = text;
+            toast.append(icon, message);
             document.body.appendChild(toast);
 
-            setTimeout(() => {
+            toastTimeout = setTimeout(() => {
                 toast.classList.add('opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+                toastFadeTimeout = setTimeout(() => toast.remove(), 300);
+            }, 3500);
         }
     </script>
 </body>
