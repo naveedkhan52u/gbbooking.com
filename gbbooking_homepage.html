@@ -1067,7 +1067,7 @@
 
             cards.forEach(card => {
                 const text = card.textContent.toLowerCase();
-                const serviceMatch = !service || service.split(/\\s+/).every(term => text.includes(term));
+                const serviceMatch = !service || service.split(/\s+/).every(term => text.includes(term));
                 const areaMatch = !area || text.includes(area);
                 const visible = serviceMatch && areaMatch;
                 card.classList.toggle('hidden', !visible);
