@@ -1,2 +1,250 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{colors:{gbBlue:'#0056b3',gbGreen:'#28a745',gbOrange:'#f97316'}}}}</script><style>body{font-family:Inter,sans-serif}</style></head><body class="bg-gray-50 text-gray-800"><header class="bg-white border-b sticky top-0 z-50 shadow-sm"><div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-3"><a href="index.html" class="font-extrabold text-2xl"><span class="text-blue-700">GB</span><span class="text-green-600">Booking</span><span class="text-orange-500">.com</span></a><nav class="flex flex-wrap gap-x-4 gap-y-2 text-sm font-semibold"><a href="index.html">⌂ Home</a><a href="services.html">♧ Services</a><a href="about.html">ⓘ About</a><a href="privacy.html">♢ Privacy</a><a href="support.html">☏ Support</a><a href="contact.html">✉ Contact</a></nav></div></header><main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"><section class="max-w-3xl mb-8"><p class="text-xs font-bold uppercase tracking-widest text-orange-500 mb-2">Contact Us | GBbooking.com</p><h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Contact Us | GBbooking.com</h1><p class="mt-4 text-sm sm:text-base text-gray-600 leading-7">Send a general enquiry, booking question, provider request, feedback or technical issue to GBbooking.com.</p></section><div class="grid lg:grid-cols-3 gap-6 items-start"><section class="lg:col-span-2 bg-white border rounded-2xl p-5 sm:p-7"><h2 class="text-xl font-bold mb-5">Send us a message</h2><form id="contactForm" class="space-y-4"><div class="grid sm:grid-cols-2 gap-4"><label class="block text-sm font-semibold">Your name *<input required name="name" autocomplete="name" maxlength="100" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="Full name"></label><label class="block text-sm font-semibold">Email address *<input required type="email" name="email" autocomplete="email" maxlength="150" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="you@example.com"></label></div><div class="grid sm:grid-cols-2 gap-4"><label class="block text-sm font-semibold">Phone / WhatsApp (optional)<input name="phone" autocomplete="tel" maxlength="30" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="+92 ..."></label><label class="block text-sm font-semibold">Enquiry type *<select required name="topic" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal bg-white"><option value="">Select a topic</option><option>General enquiry</option><option>Booking enquiry</option><option>Home services</option><option>Accommodation or transport</option><option>Provider registration or listing</option><option>Technical issue</option><option>Feedback or complaint</option><option>Privacy request</option><option>Other</option></select></label></div><label class="block text-sm font-semibold">Subject *<input required name="subject" maxlength="150" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="What is your message about?"></label><label class="block text-sm font-semibold">Message *<textarea required name="message" rows="6" maxlength="5000" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="Please explain how we can help..."></textarea></label><p class="text-xs text-gray-500">Your details will be included in an email to GBbooking support. Do not include passwords, verification codes or sensitive payment information. See our <a href="privacy.html" class="text-blue-700 font-semibold">Privacy Policy</a>.</p><button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm px-5 py-3 rounded-lg"><i class="fa-solid fa-paper-plane mr-2"></i>Prepare Email</button><p id="formStatus" class="text-sm text-gray-600" role="status" aria-live="polite"></p></form></section><aside class="space-y-4"><div class="bg-white border rounded-2xl p-5"><i class="fa-solid fa-envelope text-blue-700 text-xl"></i><h3 class="font-bold mt-2">Email</h3><a class="text-sm text-blue-700 break-all" href="mailto:official@gbbooking.com">official@gbbooking.com</a></div><div class="bg-white border rounded-2xl p-5"><i class="fa-brands fa-whatsapp text-green-600 text-xl"></i><h3 class="font-bold mt-2">WhatsApp</h3><a class="text-sm text-blue-700" href="https://wa.me/923119264467">+92 311 9264467</a></div><div class="bg-white border rounded-2xl p-5"><i class="fa-solid fa-newspaper text-orange-500 text-xl"></i><h3 class="font-bold mt-2">Official Blog</h3><a class="text-sm text-blue-700" href="https://blog.gbbooking.com" target="_blank" rel="noopener">blog.gbbooking.com</a></div><div class="bg-blue-50 border border-blue-100 rounded-2xl p-5"><h3 class="font-bold text-blue-800">Need help now?</h3><p class="text-sm text-gray-600 mt-2">Visit Customer Support for help topics and official channels.</p><a href="support.html" class="inline-block mt-3 text-sm font-bold text-blue-700">Customer Support →</a></div></aside></div>
-<script>document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const f=e.currentTarget;if(!f.reportValidity())return;const d=new FormData(f);const body=['Name: '+d.get('name'),'Email: '+d.get('email'),'Phone: '+(d.get('phone')||'Not provided'),'Enquiry type: '+d.get('topic'),'','Message:',d.get('message')].join('\n');document.getElementById('formStatus').textContent='Opening your email application. Review the prepared message and send it to complete your enquiry.';window.location.href='mailto:official@gbbooking.com?subject='+encodeURIComponent(d.get('subject'))+'&body='+encodeURIComponent(body);});</script></main><footer class="bg-gray-900 text-white mt-12"><div class="max-w-7xl mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8"><div><b class="text-xl"><span class="text-blue-400">GB</span><span class="text-green-400">Booking</span><span class="text-orange-400">.com</span></b><p class="text-xs text-gray-400 mt-3 leading-6">A local discovery and booking platform for services across Gilgit-Baltistan.</p></div><div><b>Explore</b><ul class="text-sm text-gray-400 mt-3 space-y-2"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About Us</a></li></ul></div><div><b>Information</b><ul class="text-sm text-gray-400 mt-3 space-y-2"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="support.html">Customer Support</a></li><li><a href="contact.html">Contact Form</a></li><li><a href="https://blog.gbbooking.com" target="_blank" rel="noopener">Official Blog</a></li></ul></div><div><b>Official Support</b><p class="text-sm text-gray-400 mt-3"><a href="mailto:official@gbbooking.com">official@gbbooking.com</a></p><p class="text-sm text-gray-400 mt-2"><a href="https://wa.me/923119264467">WhatsApp: +92 311 9264467</a></p></div></div><div class="border-t border-gray-800 py-5 text-center text-xs text-gray-500">© 2026 GBbooking.com. All rights reserved. Designed for Gilgit-Baltistan.</div></footer></body></html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{colors:{gbBlue:'#0056b3',gbGreen:'#28a745',gbOrange:'#f97316'}}}}</script><style>body{font-family:Inter,sans-serif}</style></head><body class="bg-gray-50 text-gray-800">    <!-- DESKTOP & MOBILE HEADER (WHITE BACKGROUND, BLACK TEXT) -->
+    <header class="bg-white border-b border-gray-200 text-gray-900 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                
+                <!-- Mobile Gutenberg / Hamburger Icon before Logo -->
+                <div class="flex items-center space-x-3">
+                    <button id="mobileMenuBtn" class="md:hidden text-gray-800 p-2 focus:outline-none hover:bg-gray-100 rounded-lg transition" aria-label="Open Gutenberg Menu">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+
+                    <!-- Logo -->
+                    <a href="#" class="flex items-center space-x-2 bg-white py-1.5 rounded-lg">
+                        <div class="font-extrabold text-xl sm:text-2xl tracking-tight leading-none flex items-center">
+                            <span class="text-[#0056b3]">GB</span>
+                            <span class="text-[#28a745]">Booking</span>
+                            <span class="text-[#f97316] text-lg sm:text-xl">.com</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Navigation Links & Mobile Account Icon -->
+                <div class="flex items-center space-x-2">
+                    <!-- Desktop Navigation Links -->
+                    <nav class="hidden md:flex items-center space-x-1 lg:space-x-3">
+                        <a href="index.html" class="px-3 py-2 rounded-lg text-sm font-semibold text-gray-800 hover:bg-gray-100 flex items-center space-x-1.5 transition">
+                            <i class="fa-solid fa-house text-gbOrange"></i>
+                            <span>Home</span>
+                        </a>
+                        <a href="services.html" class="px-3 py-2 rounded-lg text-sm font-semibold text-gray-800 hover:bg-gray-100 flex items-center space-x-1.5 transition">
+                            <i class="fa-solid fa-concierge-bell text-gbGreen"></i>
+                            <span>Services</span>
+                        </a>
+                        <a href="about.html" class="px-3 py-2 rounded-lg text-sm font-semibold text-gray-800 hover:bg-gray-100 flex items-center space-x-1.5 transition">
+                            <i class="fa-solid fa-circle-info text-sky-600"></i>
+                            <span>About Us</span>
+                        </a>
+                        <a href="privacy.html" class="px-3 py-2 rounded-lg text-sm font-semibold text-gray-800 hover:bg-gray-100 flex items-center space-x-1.5 transition">
+                            <i class="fa-solid fa-shield-halved text-amber-500"></i>
+                            <span>Privacy Policy</span>
+                        </a>
+                        <a href="support.html" class="px-3 py-2 rounded-lg text-sm font-semibold text-gray-800 hover:bg-gray-100 flex items-center space-x-1.5 transition">
+                            <i class="fa-solid fa-headset text-emerald-600"></i>
+                            <span>Customer Support</span>
+                        </a>
+                        <a href="index.html#account" class="ml-2 bg-gbBlue hover:bg-gbBlueDark text-white px-4 py-2 rounded-lg text-sm font-bold shadow flex items-center space-x-2 transition transform active:scale-95">
+                            <i class="fa-solid fa-user-circle text-white"></i>
+                            <span>Account</span>
+                        </a>
+                    </nav>
+
+                    <!-- Mobile/Tablet Account Button (Visible in top right, icon only) -->
+                    <a href="index.html#account" onclick="showToast('Redirecting to Account / Login')" class="md:hidden bg-gbBlue hover:bg-gbBlueDark text-white w-9 h-9 rounded-full shadow flex items-center justify-center transition active:scale-95" aria-label="Account">
+                        <i class="fa-solid fa-user text-white text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE GUTENBERG DRAWER MENU -->
+    <div id="mobileDrawer" class="fixed inset-0 bg-black/50 z-50 hidden md:hidden flex justify-start">
+        <div class="bg-white w-4/5 max-w-xs h-full p-6 shadow-2xl flex flex-col justify-between overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b">
+                    <div class="font-extrabold text-lg tracking-tight">
+                        <span class="text-[#0056b3]">GB</span><span class="text-[#28a745]">Booking</span><span class="text-[#f97316]">.com</span>
+                    </div>
+                    <button id="closeDrawerBtn" class="text-gray-500 hover:text-gray-800 p-1">
+                        <i class="fa-solid fa-xmark text-2xl"></i>
+                    </button>
+                </div>
+
+                <div class="mt-6 space-y-2">
+                    <a href="index.html" class="drawer-link flex items-center space-x-3 p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-gbBlue font-medium">
+                        <i class="fa-solid fa-house w-6 text-gbBlue"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="services.html" class="drawer-link flex items-center space-x-3 p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-gbBlue font-medium">
+                        <i class="fa-solid fa-concierge-bell w-6 text-gbGreen"></i>
+                        <span>Services</span>
+                    </a>
+                    <a href="services.html" class="drawer-link flex items-center space-x-3 p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-gbBlue font-medium">
+                        <i class="fa-solid fa-layer-group w-6 text-gbOrange"></i>
+                        <span>All Categories</span>
+                    </a>
+                    <a href="about.html" class="drawer-link flex items-center space-x-3 p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-gbBlue font-medium">
+                        <i class="fa-solid fa-circle-info w-6 text-sky-500"></i>
+                        <span>About Us</span>
+                    </a>
+                    <a href="privacy.html" class="drawer-link flex items-center space-x-3 p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-gbBlue font-medium">
+                        <i class="fa-solid fa-shield-halved w-6 text-emerald-600"></i>
+                        <span>Privacy Policy</span>
+                    </a>
+                    <a href="support.html" class="drawer-link flex items-center space-x-3 p-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-gbBlue font-medium">
+                        <i class="fa-solid fa-headset w-6 text-purple-600"></i>
+                        <span>Contact Support</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t pt-4 mt-6">
+                <a href="index.html#account" class="drawer-link w-full bg-gbBlue hover:bg-gbBlueDark text-white py-3 rounded-xl font-bold flex items-center justify-center space-x-2 shadow">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span>Login / Register</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"><section class="max-w-3xl mb-8"><p class="text-xs font-bold uppercase tracking-widest text-orange-500 mb-2">Contact Us | GBbooking.com</p><h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Contact Us | GBbooking.com</h1><p class="mt-4 text-sm sm:text-base text-gray-600 leading-7">Send a general enquiry, booking question, provider request, feedback or technical issue to GBbooking.com.</p></section><div class="grid lg:grid-cols-3 gap-6 items-start"><section class="lg:col-span-2 bg-white border rounded-2xl p-5 sm:p-7"><h2 class="text-xl font-bold mb-5">Send us a message</h2><form id="contactForm" class="space-y-4"><div class="grid sm:grid-cols-2 gap-4"><label class="block text-sm font-semibold">Your name *<input required name="name" autocomplete="name" maxlength="100" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="Full name"></label><label class="block text-sm font-semibold">Email address *<input required type="email" name="email" autocomplete="email" maxlength="150" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="you@example.com"></label></div><div class="grid sm:grid-cols-2 gap-4"><label class="block text-sm font-semibold">Phone / WhatsApp (optional)<input name="phone" autocomplete="tel" maxlength="30" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="+92 ..."></label><label class="block text-sm font-semibold">Enquiry type *<select required name="topic" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal bg-white"><option value="">Select a topic</option><option>General enquiry</option><option>Booking enquiry</option><option>Home services</option><option>Accommodation or transport</option><option>Provider registration or listing</option><option>Technical issue</option><option>Feedback or complaint</option><option>Privacy request</option><option>Other</option></select></label></div><label class="block text-sm font-semibold">Subject *<input required name="subject" maxlength="150" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="What is your message about?"></label><label class="block text-sm font-semibold">Message *<textarea required name="message" rows="6" maxlength="5000" class="mt-1 w-full border rounded-lg px-3 py-2.5 font-normal" placeholder="Please explain how we can help..."></textarea></label><p class="text-xs text-gray-500">Your details will be included in an email to GBbooking support. Do not include passwords, verification codes or sensitive payment information. See our <a href="privacy.html" class="text-blue-700 font-semibold">Privacy Policy</a>.</p><button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm px-5 py-3 rounded-lg"><i class="fa-solid fa-paper-plane mr-2"></i>Prepare Email</button><p id="formStatus" class="text-sm text-gray-600" role="status" aria-live="polite"></p></form></section><aside class="space-y-4"><div class="bg-white border rounded-2xl p-5"><i class="fa-solid fa-envelope text-blue-700 text-xl"></i><h3 class="font-bold mt-2">Email</h3><a class="text-sm text-blue-700 break-all" href="mailto:official@gbbooking.com">official@gbbooking.com</a></div><div class="bg-white border rounded-2xl p-5"><i class="fa-brands fa-whatsapp text-green-600 text-xl"></i><h3 class="font-bold mt-2">WhatsApp</h3><a class="text-sm text-blue-700" href="https://wa.me/923119264467">+92 311 9264467</a></div><div class="bg-white border rounded-2xl p-5"><i class="fa-solid fa-newspaper text-orange-500 text-xl"></i><h3 class="font-bold mt-2">Official Blog</h3><a class="text-sm text-blue-700" href="https://blog.gbbooking.com" target="_blank" rel="noopener">blog.gbbooking.com</a></div><div class="bg-blue-50 border border-blue-100 rounded-2xl p-5"><h3 class="font-bold text-blue-800">Need help now?</h3><p class="text-sm text-gray-600 mt-2">Visit Customer Support for help topics and official channels.</p><a href="support.html" class="inline-block mt-3 text-sm font-bold text-blue-700">Customer Support →</a></div></aside></div>
+<script>document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const f=e.currentTarget;if(!f.reportValidity())return;const d=new FormData(f);const body=['Name: '+d.get('name'),'Email: '+d.get('email'),'Phone: '+(d.get('phone')||'Not provided'),'Enquiry type: '+d.get('topic'),'','Message:',d.get('message')].join('\n');document.getElementById('formStatus').textContent='Opening your email application. Review the prepared message and send it to complete your enquiry.';window.location.href='mailto:official@gbbooking.com?subject='+encodeURIComponent(d.get('subject'))+'&body='+encodeURIComponent(body);});</script></main>    <!-- FOOTER SECTION (DIFFERENT LAYOUT FOR DESKTOP VS MOBILE/TABLET) -->
+    <footer id="contact" class="bg-gray-900 text-white">
+
+        <!-- DESKTOP FOOTER LAYOUT (HIDDEN ON MOBILE/TABLET) -->
+        <div class="hidden md:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-4 gap-8">
+                <!-- Col 1: Logo & Tagline -->
+                <div class="space-y-4">
+                    <div class="font-extrabold text-2xl tracking-tight leading-none bg-white inline-block px-3 py-1.5 rounded-lg">
+                        <span class="text-[#0056b3]">GB</span><span class="text-[#28a745]">Booking</span><span class="text-[#f97316]">.com</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Gilgit-Baltistan's leading online marketplace for Hotel Stays, 4x4 Jeep Rentals, Trekking Packages, and On-Demand Home Services.
+                    </p>
+                    <!-- Social Media Clickable Icons -->
+                    <div class="flex space-x-3 pt-2">
+                        <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gbBlue text-gray-300 hover:text-white flex items-center justify-center transition" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f text-xs"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-pink-600 text-gray-300 hover:text-white flex items-center justify-center transition" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-xs"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-red-600 text-gray-300 hover:text-white flex items-center justify-center transition" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube text-xs"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-teal-500 text-gray-300 hover:text-white flex items-center justify-center transition" aria-label="TikTok">
+                            <i class="fa-brands fa-tiktok text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-gray-800 pb-2">Quick Links</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="services.html#accommodation" class="hover:text-white transition">Hotel Reservations</a></li>
+                        <li><a href="services.html#transport" class="hover:text-white transition">4x4 Jeep & Car Rentals</a></li>
+                        <li><a href="services.html#tours" class="hover:text-white transition">Tours & Trekking Guides</a></li>
+                        <li><a href="services.html#events" class="hover:text-white transition">Wedding & Event Venues</a></li>
+                        <li><a href="services.html#home-services" class="hover:text-white transition">Local Home Repairs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Pages & Company -->
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-gray-800 pb-2">Platform Pages</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="support.html" class="hover:text-white transition">Customer Support</a></li><li><a href="contact.html" class="hover:text-white transition">Contact Form</a></li><li><a href="https://blog.gbbooking.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Official Blog</a></li>
+                        <li><a href="index.html#account" class="hover:text-white transition">Vendor Portal / Login</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact Support Info -->
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-gray-800 pb-2">Contact Support</h4>
+                    <ul class="space-y-3 text-xs text-gray-400">
+                        <li class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot text-gbOrange mt-0.5"></i>
+                            <span>Serving customers and providers across Gilgit-Baltistan</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-brands fa-whatsapp text-gbGreen"></i>
+                            <a href="https://wa.me/923119264467" target="_blank" rel="noopener noreferrer">+92 311 9264467 (WhatsApp)</a>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-envelope text-gbBlue"></i>
+                            <a href="mailto:official@gbbooking.com">official@gbbooking.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright Line Desktop -->
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-500">
+                <p>&copy; 2026 GBbooking. All rights reserved. Designed for Gilgit-Baltistan.</p>
+            </div>
+        </div>
+
+        <!-- MOBILE & TABLET FOOTER LAYOUT (CENTERED LOGO, SOCIAL MEDIA, PAGES & COPYRIGHT) -->
+        <div class="block md:hidden py-8 px-4 text-center space-y-5">
+            <!-- Center Logo -->
+            <div class="flex justify-center">
+                <div class="font-extrabold text-xl tracking-tight leading-none bg-white inline-block px-3 py-1.5 rounded-lg">
+                    <span class="text-[#0056b3]">GB</span><span class="text-[#28a745]">Booking</span><span class="text-[#f97316]">.com</span>
+                </div>
+            </div>
+
+            <!-- Social Media Clickable Icons Centered -->
+            <div class="flex justify-center space-x-4">
+                <a href="https://facebook.com" target="_blank" class="w-9 h-9 rounded-full bg-gray-800 text-gray-200 flex items-center justify-center text-sm" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="w-9 h-9 rounded-full bg-gray-800 text-gray-200 flex items-center justify-center text-sm" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://youtube.com" target="_blank" class="w-9 h-9 rounded-full bg-gray-800 text-gray-200 flex items-center justify-center text-sm" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://tiktok.com" target="_blank" class="w-9 h-9 rounded-full bg-gray-800 text-gray-200 flex items-center justify-center text-sm" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </div>
+
+            <!-- Mention Pages Links Centered -->
+            <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-gray-300 font-medium">
+                <a href="index.html" class="hover:underline">Home</a>
+                <span>•</span>
+                <a href="services.html" class="hover:underline">Services</a>
+                <span>•</span>
+                <a href="about.html" class="hover:underline">About Us</a>
+                <span>•</span>
+                <a href="privacy.html" class="hover:underline">Privacy Policy</a>
+                <span>•</span>
+                <a href="support.html" class="hover:underline">Customer Support</a> <span>•</span> <a href="contact.html" class="hover:underline">Contact</a>
+            </div>
+
+            <!-- Exact Mobile Copyright Text Centered -->
+            <div class="border-t border-gray-800 pt-4 text-xs text-gray-400">
+                <p>&copy; 2026 GBbooking. All rights reserved. Designed for Gilgit-Baltistan.</p>
+            </div>
+        </div>
+
+    </footer>
+
+<script>
+const mobileMenuBtn=document.getElementById('mobileMenuBtn'),closeDrawerBtn=document.getElementById('closeDrawerBtn'),mobileDrawer=document.getElementById('mobileDrawer'),drawerPanel=mobileDrawer?.firstElementChild;
+function openMenu(){if(!mobileDrawer)return;mobileDrawer.classList.remove('hidden');mobileMenuBtn?.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';closeDrawerBtn?.focus();}
+function closeMenu(){if(!mobileDrawer)return;mobileDrawer.classList.add('hidden');mobileMenuBtn?.setAttribute('aria-expanded','false');document.body.style.overflow='';mobileMenuBtn?.focus();}
+mobileMenuBtn?.setAttribute('aria-controls','mobileDrawer');mobileMenuBtn?.setAttribute('aria-expanded','false');mobileMenuBtn?.addEventListener('click',openMenu);closeDrawerBtn?.addEventListener('click',closeMenu);
+mobileDrawer?.addEventListener('click',e=>{if(e.target===mobileDrawer)closeMenu();});drawerPanel?.addEventListener('click',e=>e.stopPropagation());
+document.querySelectorAll('.drawer-link').forEach(a=>a.addEventListener('click',()=>{if(!mobileDrawer?.classList.contains('hidden'))closeMenu();}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mobileDrawer&&!mobileDrawer.classList.contains('hidden'))closeMenu();});
+window.addEventListener('resize',()=>{if(matchMedia('(min-width:768px)').matches&&mobileDrawer&&!mobileDrawer.classList.contains('hidden')){mobileDrawer.classList.add('hidden');document.body.style.overflow='';mobileMenuBtn?.setAttribute('aria-expanded','false');}});
+</script>
+</body></html>
