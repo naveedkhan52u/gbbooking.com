@@ -3,9 +3,9 @@
    components/site-footer.html to update the site-wide layout once. */
 (async function () {
   const components = [
-    ["[data-shared-component='header']", "components/site-header.html"],
-    ["[data-shared-component='mobile-bottom-nav']", "components/mobile-bottom-nav.html"],
-    ["[data-shared-component='footer']", "components/site-footer.html"]
+    ["[data-shared-component='header']", "/components/site-header.html"],
+    ["[data-shared-component='mobile-bottom-nav']", "/components/mobile-bottom-nav.html"],
+    ["[data-shared-component='footer']", "/components/site-footer.html"]
   ];
 
   try {
@@ -53,7 +53,7 @@
       if (event.key === "Escape" && drawer && !drawer.classList.contains("hidden")) closeDrawer();
     });
     window.addEventListener("resize", () => {
-      if (window.matchMedia("(min-width: 768px)").matches && drawer && !drawer.classList.contains("hidden")) {
+      if (window.matchMedia("(min-width: 1024px)").matches && drawer && !drawer.classList.contains("hidden")) {
         closeDrawer(false);
       }
     });
