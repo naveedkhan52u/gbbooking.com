@@ -681,7 +681,8 @@
     <!-- SHARED MASTER FOOTER -->
 <div data-shared-component="footer"></div>
 
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/assets/js/supabase-client.js"></script><script src="/assets/js/marketplace.js"></script>
+<script>
         // 2. Hero carousel: readable timing, accessible controls, and pause behavior
         let currentSlide = 0;
         const heroTrack = document.getElementById('heroTrack');
@@ -787,7 +788,8 @@
         }
 
         function bookNow(serviceTitle) {
-            showToast(`Booking for ${serviceTitle} is not live in this frontend demo yet.`);
+            showToast('Choose a live provider listing below to submit a booking request.');
+            document.getElementById('live-services')?.scrollIntoView({behavior:'smooth',block:'start'});
         }
 
         // Safe toast rendering: user-entered text is never interpreted as HTML
