@@ -1,3 +1,38 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Signing in | GBbooking.com</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/assets/js/supabase-client.js"></script></head><body style="font-family:Inter,Arial,sans-serif;padding:2rem"><p id="message">Completing sign-in…</p><script>
-(async()=>{const msg=document.getElementById('message');try{const {data,error}=await gbSupabase.auth.getSession();if(error)throw error;if(!data.session)throw new Error('No active session. Please try signing in again.');const {data:p,error:pe}=await gbSupabase.from('profiles').select('role').eq('id',data.session.user.id).maybeSingle();if(pe)throw pe;location.replace(p?.role==='provider'?'/provider-dashboard.html':p?.role==='admin'?'/admin/dashboard.html':'/dashboard.html');}catch(e){msg.textContent=e.message;}})();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Confirming your account | GBbooking.com</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/supabase-client.js"></script>
+</head>
+<body style="font-family:Inter,Arial,sans-serif;max-width:520px;margin:12vh auto;padding:24px;color:#1f2937">
+<h1 style="font-size:24px">Confirming your GBbooking account</h1>
+<p id="message" role="status">Please wait while we verify your email…</p>
+<a id="loginLink" href="/login.html" style="display:none;color:#0056b3;font-weight:600">Return to login</a>
+<script>
+(async()=>{
+ const msg=document.getElementById('message');
+ const link=document.getElementById('loginLink');
+ try{
+  if(!window.gbSupabase) throw new Error('Authentication could not load. Please return to login and try again.');
+  const params=new URLSearchParams(location.hash.slice(1));
+  const query=new URLSearchParams(location.search);
+  const authError=params.get('error_description')||query.get('error_description');
+  if(authError) throw new Error(decodeURIComponent(authError.replace(/\+/g,' ')));
+  const {data,error}=await gbSupabase.auth.getSession();
+  if(error) throw error;
+  if(!data.session) throw new Error('This confirmation link is invalid or has expired. Return to login and request a new confirmation email.');
+  const {data:profile,error:profileError}=await gbSupabase.from('profiles').select('role').eq('id',data.session.user.id).maybeSingle();
+  if(profileError) throw profileError;
+  const role=profile?.role||data.session.user.user_metadata?.role||'customer';
+  location.replace(role==='provider'?'/provider-dashboard.html':role==='admin'?'/admin/dashboard.html':'/dashboard.html');
+ }catch(e){
+  msg.textContent=e.message||'We could not confirm this link. Please request a new email confirmation.';
+  link.style.display='inline-block';
+ }
+})();
+</script>
+</body>
+</html>
