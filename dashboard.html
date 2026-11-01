@@ -51,4 +51,33 @@ function render(){const active=bookings.filter(b=>b.status==='Pending'||b.status
 newContainer.addEventListener('click',e=>{const button=e.target.closest('[data-cancel]');if(!button)return;const booking=bookings.find(b=>b.id===button.dataset.cancel);if(!booking||booking.status!=='Pending')return;if(!confirm('Cancel this pending booking?'))return;bookings=bookings.filter(b=>b.id!==booking.id);render();});
 render();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/assets/js/supabase-client.js"></script>
+<script>
+(async function(){
+ const sb=window.gbSupabase;if(!sb)return;
+ const {data:{session},error:authError}=await sb.auth.getSession();
+ if(authError||!session){location.replace('/login.html');return;}
+ const {data:profile}=await sb.from('profiles').select('role,full_name').eq('id',session.user.id).maybeSingle();
+ if(profile?.role==='provider'){location.replace('/provider-dashboard.html');return;}
+ if(profile?.role==='admin'){location.replace('/admin/dashboard.html');return;}
+ document.getElementById('userName').textContent=profile?.full_name||session.user.user_metadata?.full_name||session.user.email?.split('@')[0]||'Customer';
+ function formatDate(v){if(!v)return 'Not scheduled';const d=new Date(v);return d.toLocaleDateString('en-PK',{day:'numeric',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});}
+ async function load(){
+  const {data,error}=await sb.from('bookings').select('id,booking_number,service_title_snapshot,provider_name_snapshot,region_name_snapshot,price_snapshot,scheduled_at,status,customer_phone').eq('customer_user_id',session.user.id).order('created_at',{ascending:false});
+  if(error){console.error(error);return;}
+  bookings=(data||[]).map(b=>({id:'GB-'+b.booking_number,dbid:b.id,service:b.service_title_snapshot,provider:b.provider_name_snapshot,location:b.region_name_snapshot,date:formatDate(b.scheduled_at),time:'',amount:'PKR '+Number(b.price_snapshot).toLocaleString('en-PK'),status:b.status[0].toUpperCase()+b.status.slice(1)}));
+  render();
+ }
+ newContainer.addEventListener('click',async e=>{
+  const btn=e.target.closest('[data-cancel]');if(!btn)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  const b=bookings.find(x=>x.id===btn.dataset.cancel);if(!b?.dbid||b.status!=='Pending'||!confirm('Cancel this pending booking?'))return;
+  const {error}=await sb.from('bookings').update({status:'cancelled'}).eq('id',b.dbid);
+  if(error){alert(error.message);return;}await load();
+ },true);
+ await load();
+ sb.channel('customer-bookings-'+session.user.id).on('postgres_changes',{event:'*',schema:'public',table:'bookings',filter:'customer_user_id=eq.'+session.user.id},load).subscribe();
+ document.querySelectorAll('a[href="/login.html"]').forEach(a=>{if(a.textContent.toLowerCase().includes('sign'))a.href='#';});
+})();
+</script>
 </body></html>
