@@ -58,6 +58,40 @@
       }
     });
 
+    // Highlight the current destination across desktop, drawer, and bottom navigation.
+    function markActiveNavigation() {
+      const currentPath = window.location.pathname.replace(/\\/$/, "") || "/";
+      const currentHash = window.location.hash;
+      const isHome = currentPath === "/" || currentPath.endsWith("/index.html");
+      const isDashboard = /(?:^|\\/)dashboard(?:\\.html)?$/.test(currentPath);
+
+      document.querySelectorAll(".gb-master-header nav a, #mobileDrawer a.drawer-link, .gb-master-bottom-nav a").forEach(link => {
+        const rawHref = link.getAttribute("href");
+        if (!rawHref || rawHref.startsWith("javascript:")) return;
+        const target = new URL(rawHref, window.location.href);
+        const targetPath = target.pathname.replace(/\\/$/, "") || "/";
+        const targetHash = target.hash;
+        let active = targetPath === currentPath;
+
+        if (isHome && (targetPath.endsWith("/index.html") || targetPath === "/")) {
+          active = !targetHash || targetHash === "#home"
+            ? (!currentHash || currentHash === "#home")
+            : targetHash === currentHash;
+        }
+        if (isDashboard && targetPath.endsWith("/login.html")) active = true;
+        if (targetHash && targetPath === currentPath && targetHash !== currentHash) active = false;
+
+        if (active) {
+          link.classList.add("gb-nav-active");
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.classList.remove("gb-nav-active");
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+    markActiveNavigation();
+
     document.dispatchEvent(new CustomEvent("gbbooking:layout-ready"));
   } catch (error) {
     console.error("[GBbooking layout]", error);
