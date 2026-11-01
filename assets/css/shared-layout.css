@@ -10,6 +10,11 @@ body { padding-bottom: 4rem !important; }
 .gb-master-header > div { max-width: 80rem; margin-inline: auto; padding-inline: 1rem; }
 #mobileMenuBtn { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border: 0; border-radius: .5rem; background: transparent; color: #1f2937; cursor: pointer; }
 #mobileMenuBtn:hover { background: #f3f4f6; }
+/* The ID selector above overrides Tailwind's lg:hidden unless we explicitly hide it. */
+@media (min-width: 1024px) { #mobileMenuBtn { display: none !important; } }
+/* Compact, consistent typography in the mobile/tablet Gutenberg drawer. */
+.gb-master-header ~ #mobileDrawer .drawer-link { font-size: .875rem; line-height: 1.25rem; }
+.gb-master-header ~ #mobileDrawer .drawer-link { padding: .625rem .75rem; }
 .gb-master-header ~ #mobileDrawer { position: fixed; inset: 0; z-index: 1000; background: rgb(0 0 0 / .5); }
 .gb-master-header ~ #mobileDrawer.hidden { display: none !important; }
 .gb-master-header ~ #mobileDrawer > div { width: 80%; max-width: 20rem; height: 100%; overflow-y: auto; background: #fff; padding: 1.5rem; box-shadow: 0 25px 50px -12px rgb(0 0 0 / .25); }
