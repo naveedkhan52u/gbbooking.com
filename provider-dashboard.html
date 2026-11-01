@@ -18,7 +18,7 @@ body{font-family:Inter,sans-serif}.provider-card{background:#fff;border:1px soli
 <div data-shared-component="header"></div>
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-9">
 <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7">
-<div><div class="flex items-center gap-2"><span class="text-xs font-extrabold uppercase tracking-wider text-gbBlue">Provider workspace</span><span class="rounded-full bg-amber-50 text-amber-700 px-2 py-1 text-[10px] font-bold">Demo mode</span></div><h1 class="mt-1 text-2xl sm:text-3xl font-extrabold text-gray-900">Welcome, <span id="providerName">Provider</span></h1><p class="mt-1 text-sm text-gray-500">Manage your bookings, earnings and service listings.</p></div>
+<div><div class="flex items-center gap-2"><span class="text-xs font-extrabold uppercase tracking-wider text-gbBlue">Provider workspace</span><span class="rounded-full bg-emerald-50 text-emerald-700 px-2 py-1 text-[10px] font-bold">Live account</span></div><h1 class="mt-1 text-2xl sm:text-3xl font-extrabold text-gray-900">Welcome, <span id="providerName">Provider</span></h1><p class="mt-1 text-sm text-gray-500">Manage your bookings, earnings and service listings.</p></div>
 <button id="openServiceForm" type="button" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gbBlue hover:bg-gbBlueDark text-white px-4 py-3 text-sm font-extrabold shadow-sm"><i class="fa-solid fa-plus"></i> Add Services</button>
 </header>
 
@@ -48,7 +48,7 @@ body{font-family:Inter,sans-serif}.provider-card{background:#fff;border:1px soli
 <div id="bookingHistory" class="grid lg:grid-cols-2 gap-4"></div>
 <div id="bookingHistoryEmpty" class="hidden provider-card border-dashed p-9 text-center"><i class="fa-solid fa-clock-rotate-left text-2xl text-gray-300"></i><p class="mt-2 text-sm font-bold text-gray-600">No completed bookings yet</p><p class="mt-1 text-xs text-gray-400">Completed bookings will be listed here.</p></div>
 </section>
-<p class="mt-8 text-center text-[11px] text-gray-400">Demo provider dashboard. Changes are saved in this browser only. Live booking data and service verification will be connected to Supabase later.</p>
+<p class="mt-8 text-center text-[11px] text-gray-400">Bookings and service submissions are synchronized with GBbooking's live database.</p>
 </main>
 
 <!-- Add service modal -->
@@ -157,7 +157,7 @@ form.reset();preview.innerHTML='';setTimeout(()=>{closeModal();notice.className=
 render();
 })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/assets/js/supabase-client.js"></script><script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/assets/js/supabase-client.js"></script><script src="/assets/js/provider-services.js"></script><script>
 (async()=>{const sb=gbSupabase;if(!sb)return;const {data:{session}}=await sb.auth.getSession();if(!session){location.replace('/login.html');return;}const {data:p}=await sb.from('profiles').select('role').eq('id',session.user.id).maybeSingle();if(p?.role!=='provider'){location.replace(p?.role==='admin'?'/admin/dashboard.html':'/dashboard.html');return;}
 async function load(){const {data,error}=await sb.from('bookings').select('id,booking_number,customer_name,customer_phone,service_title_snapshot,region_name_snapshot,price_snapshot,scheduled_at,status').eq('provider_user_id',session.user.id).order('created_at',{ascending:false});if(error){console.error(error);return;}bookings=(data||[]).map(b=>({id:b.id,displayId:'GB-'+b.booking_number,customer:b.customer_name,phone:b.customer_phone,service:b.service_title_snapshot,location:b.region_name_snapshot,date:b.scheduled_at?new Date(b.scheduled_at).toLocaleDateString('en-PK',{day:'numeric',month:'short',year:'numeric'}):'Not scheduled',time:b.scheduled_at?new Date(b.scheduled_at).toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'}):'',amount:Number(b.price_snapshot),status:b.status[0].toUpperCase()+b.status.slice(1)}));render();}
 document.querySelector('main').addEventListener('click',async e=>{const btn=e.target.closest('[data-action]');if(!btn)return;e.preventDefault();e.stopImmediatePropagation();const b=bookings.find(x=>x.id===btn.dataset.id);if(!b)return;const next=btn.dataset.action==='accept'?'confirmed':btn.dataset.action==='cancel'?'cancelled':btn.dataset.action==='complete'?'completed':null;if(!next)return;if(next==='cancelled'&&!confirm('Cancel this booking?'))return;if(next==='completed'&&!confirm('Mark this booking as completed?'))return;const {error}=await sb.from('bookings').update({status:next}).eq('id',b.id);if(error){alert(error.message);return;}await load();},true);
