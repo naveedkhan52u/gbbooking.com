@@ -60,16 +60,16 @@
 
     // Highlight the current destination across desktop, drawer, and bottom navigation.
     function markActiveNavigation() {
-      const currentPath = window.location.pathname.replace(/\\/$/, "") || "/";
+      const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
       const currentHash = window.location.hash;
       const isHome = currentPath === "/" || currentPath.endsWith("/index.html");
-      const isDashboard = /(?:^|\\/)dashboard(?:\\.html)?$/.test(currentPath);
+      const isDashboard = /(?:^|\/)dashboard(?:\.html)?$/.test(currentPath);
 
       document.querySelectorAll(".gb-master-header nav a, #mobileDrawer a.drawer-link, .gb-master-bottom-nav a").forEach(link => {
         const rawHref = link.getAttribute("href");
         if (!rawHref || rawHref.startsWith("javascript:")) return;
         const target = new URL(rawHref, window.location.href);
-        const targetPath = target.pathname.replace(/\\/$/, "") || "/";
+        const targetPath = target.pathname.replace(/\/$/, "") || "/";
         const targetHash = target.hash;
         let active = targetPath === currentPath;
 
