@@ -1,0 +1,22 @@
+(async function(){
+const sb=window.gbSupabase;if(!sb)return;const {data:{session}}=await sb.auth.getSession();if(!session)return;
+const form=document.getElementById('serviceForm');if(!form)return;
+form.addEventListener('submit',async e=>{e.preventDefault();e.stopImmediatePropagation();const notice=document.getElementById('serviceFormNotice'),submit=form.querySelector('[type=submit]');const say=(t,bad=false)=>{notice.textContent=t;notice.className='block rounded-xl px-3 py-2.5 text-xs font-semibold '+(bad?'bg-red-50 text-red-700':'bg-emerald-50 text-emerald-800');};
+const files=Array.from(document.getElementById('serviceImages').files||[]);if(files.length<1||files.length>2){say('Upload one or two images.',true);return;}
+const cnic=document.getElementById('providerCnic').value.trim(),phone=document.getElementById('phoneNumber').value.trim(),wa=document.getElementById('whatsappNumber').value.trim();if(!/^\d{13}$/.test(cnic)||!/^92\d{10}$/.test(phone)||!/^92\d{10}$/.test(wa)){say('Check your CNIC and phone numbers.',true);return;}
+const categoryText=document.getElementById('serviceCategory').value;const aliases={'Hotels & Resorts':'hotels','Guest Houses':'guest-houses','Student Hostels':'student-hostels','Rooms & Short Stays':'rooms','Plumbing Services':'plumbing-services','Electrical Work':'electrical-work','Home Repair & Maintenance':'home-repair-maintenance','Cleaning Services':'cleaning-services','Painting Services':'painting-services','Other Household Services':'other-household-services','Tour Packages':'tour-operators','Local Guides':'language-translators','Trekking & Hiking Guides':'tour-operators','Sightseeing & Experiences':'travel-agencies'};const slug=aliases[categoryText];if(!slug){say('This category is not included in the current GBbooking launch catalogue. Choose Accommodation, Tourism & Travel, or Home Services.',true);return;}
+submit.disabled=true;submit.textContent='Submitting…';
+try{
+const {data:service,error:se}=await sb.from('services').select('id').eq('slug',slug).maybeSingle();if(se||!service)throw se||new Error('Selected service type is not configured.');
+const {data:region,error:re}=await sb.from('regions').select('id').eq('slug',document.getElementById('serviceRegion').value.toLowerCase()).maybeSingle();if(re||!region)throw re||new Error('Selected region is not configured.');
+const {error:pe}=await sb.from('provider_profiles').update({address:document.getElementById('serviceAddress').value.trim(),whatsapp_phone:wa}).eq('user_id',session.user.id);if(pe)throw pe;
+const {error:phoneErr}=await sb.from('profiles').update({phone}).eq('id',session.user.id);if(phoneErr)throw phoneErr;
+const {error:cnicErr}=await sb.from('provider_private_details').upsert({provider_user_id:session.user.id,cnic_number:cnic,updated_at:new Date().toISOString()},{onConflict:'provider_user_id'});if(cnicErr)throw cnicErr;
+const paths=[];for(const file of files){if(!file.type.startsWith('image/')||file.size>5*1024*1024)throw new Error('Each image must be an image file smaller than 5 MB.');const ext=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'');const path=session.user.id+'/'+crypto.randomUUID()+'.'+ext;const {error:upErr}=await sb.storage.from('provider-service-images').upload(path,file,{upsert:false,contentType:file.type});if(upErr)throw upErr;paths.push(path);}
+const types=Array.from(form.querySelectorAll('input[name=chargingType]:checked')).map(x=>x.value);if(!types.length)throw new Error('Select a charging type.');
+const unitMap={'Per Hour':'per_hour','Per Day':'per_day','Per Night':'per_night','Per Month':'per_month'};const unit=unitMap[types[0]]||'fixed';
+const {error:insErr}=await sb.from('provider_services').insert({provider_user_id:session.user.id,service_id:service.id,region_id:region.id,title:document.getElementById('serviceName').value.trim(),description:'',address:document.getElementById('serviceAddress').value.trim(),price:Number(document.getElementById('servicePrice').value),pricing_unit:unit,additional_pricing_units:types.slice(1),image_paths:paths,is_active:true,verification_status:'pending'});if(insErr)throw insErr;
+say('Your listing and verification details have been submitted. Admin approval is required before it appears publicly.');form.reset();document.getElementById('imagePreview').innerHTML='';
+}catch(err){say(err.message||'Could not submit the listing.',true);}finally{submit.disabled=false;submit.innerHTML='<i class="fa-solid fa-paper-plane"></i> Submit for Admin Verification';}
+},true);
+})();
