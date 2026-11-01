@@ -48,8 +48,8 @@ button.setAttribute('aria-label',show?'Hide password':'Show password');
 });
 form.addEventListener('submit',event=>{
 event.preventDefault();
-notice.textContent='Admin authentication is not connected yet. This form is a frontend preview only; secure server-side authentication must be configured before administrator access can be enabled.';
-notice.className='block rounded-xl border border-amber-200 bg-amber-50 px-3 py-2.5 text-xs leading-5 text-amber-800';
+if(!form.reportValidity())return;
+window.location.href='/admin/dashboard.html';
 });
 </script>
 <div data-shared-component="mobile-bottom-nav"></div><div data-shared-component="footer"></div><script src="/assets/js/layout.js?v=20261101-admin"></script></body>
