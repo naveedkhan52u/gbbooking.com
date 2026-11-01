@@ -157,5 +157,12 @@ form.reset();preview.innerHTML='';setTimeout(()=>{closeModal();notice.className=
 render();
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/assets/js/supabase-client.js"></script><script>
+(async()=>{const sb=gbSupabase;if(!sb)return;const {data:{session}}=await sb.auth.getSession();if(!session){location.replace('/login.html');return;}const {data:p}=await sb.from('profiles').select('role').eq('id',session.user.id).maybeSingle();if(p?.role!=='provider'){location.replace(p?.role==='admin'?'/admin/dashboard.html':'/dashboard.html');return;}
+async function load(){const {data,error}=await sb.from('bookings').select('id,booking_number,customer_name,customer_phone,service_title_snapshot,region_name_snapshot,price_snapshot,scheduled_at,status').eq('provider_user_id',session.user.id).order('created_at',{ascending:false});if(error){console.error(error);return;}bookings=(data||[]).map(b=>({id:b.id,displayId:'GB-'+b.booking_number,customer:b.customer_name,phone:b.customer_phone,service:b.service_title_snapshot,location:b.region_name_snapshot,date:b.scheduled_at?new Date(b.scheduled_at).toLocaleDateString('en-PK',{day:'numeric',month:'short',year:'numeric'}):'Not scheduled',time:b.scheduled_at?new Date(b.scheduled_at).toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'}):'',amount:Number(b.price_snapshot),status:b.status[0].toUpperCase()+b.status.slice(1)}));render();}
+document.querySelector('main').addEventListener('click',async e=>{const btn=e.target.closest('[data-action]');if(!btn)return;e.preventDefault();e.stopImmediatePropagation();const b=bookings.find(x=>x.id===btn.dataset.id);if(!b)return;const next=btn.dataset.action==='accept'?'confirmed':btn.dataset.action==='cancel'?'cancelled':btn.dataset.action==='complete'?'completed':null;if(!next)return;if(next==='cancelled'&&!confirm('Cancel this booking?'))return;if(next==='completed'&&!confirm('Mark this booking as completed?'))return;const {error}=await sb.from('bookings').update({status:next}).eq('id',b.id);if(error){alert(error.message);return;}await load();},true);
+await load();sb.channel('provider-bookings-'+session.user.id).on('postgres_changes',{event:'*',schema:'public',table:'bookings',filter:'provider_user_id=eq.'+session.user.id},load).subscribe();
+})();
+</script>
 </body>
 </html>
