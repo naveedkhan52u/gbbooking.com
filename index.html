@@ -489,7 +489,7 @@ const extra=$('bookingCustomerNotes').value.trim();if(extra)details.push('Custom
 button.disabled=true;button.textContent='Submitting request…';
 try{const scheduled=new Date(date+'T'+(time||'12:00')+':00+05:00').toISOString();const {error}=await sb.from('bookings').insert({customer_user_id:session.user.id,customer_name:$('bookingCustomerName').value.trim(),customer_phone:$('bookingCustomerPhone').value.trim(),provider_service_id:selectedListing.id,scheduled_at:scheduled,customer_notes:details.join('\n')||null});if(error)throw error;say('Booking request submitted. The provider and GBbooking team can now review it.');button.textContent='Request submitted';setTimeout(closeBooking,1600);}catch(err){say(err.message||'Could not submit your booking request.',true);button.disabled=false;button.innerHTML='<i class="fa-solid fa-calendar-check mr-2"></i>Submit Booking Request';}
 });
-window.triggerSearch=function(){const service=($('serviceInput')?.value||'').trim().toLowerCase(),area=($('areaSelect')?.value||'').trim().toLowerCase();let count=0;document.querySelectorAll('[data-book-listing]').forEach(btn=>{const card=btn.closest('article');const item=liveListings.find(x=>x.id===btn.dataset.bookListing);const text=(card?.textContent||'').toLowerCase();const serviceMatch=!service||service.split(/\s+/).every(term=>text.includes(term));const areaMatch=!area||(item?.region?.name||'').toLowerCase().includes(area);const visible=serviceMatch&&areaMatch;card?.classList.toggle('hidden',!visible);if(visible)count++;});Object.entries(grids).forEach(([category,id])=>{const host=$(id),section=$(sections[category]);const visible=host?.querySelectorAll('article:not(.hidden)').length||0;section?.classList.toggle('hidden',!!(service||area)&&visible===0);});showToast(count?('Showing '+count+' matching live listings.'):'No matching live listings. Try another service or area.');};
+window.gbLiveTriggerSearch=function(){const service=($('serviceInput')?.value||'').trim().toLowerCase(),area=($('areaSelect')?.value||'').trim().toLowerCase();let count=0;document.querySelectorAll('[data-book-listing]').forEach(btn=>{const card=btn.closest('article');const item=liveListings.find(x=>x.id===btn.dataset.bookListing);const text=(card?.textContent||'').toLowerCase();const serviceMatch=!service||service.split(/\s+/).every(term=>text.includes(term));const areaMatch=!area||(item?.region?.name||'').toLowerCase().includes(area);const visible=serviceMatch&&areaMatch;card?.classList.toggle('hidden',!visible);if(visible)count++;});Object.entries(grids).forEach(([category,id])=>{const host=$(id),section=$(sections[category]);const visible=host?.querySelectorAll('article:not(.hidden)').length||0;section?.classList.toggle('hidden',!!(service||area)&&visible===0);});showToast(count?('Showing '+count+' matching live listings.'):'No matching live listings. Try another service or area.');};
 loadListings();sb.channel('public-provider-services').on('postgres_changes',{event:'*',schema:'public',table:'provider_services'},loadListings).subscribe();
 })();
 </script>
@@ -568,30 +568,10 @@ loadListings();sb.channel('public-provider-services').on('postgres_changes',{eve
 
         // 3. Search demo: filter the existing sample cards without changing their design
         function triggerSearch() {
-            const service = (document.getElementById('serviceInput')?.value || '').trim().toLowerCase();
-            const area = (document.getElementById('areaSelect')?.value || '').trim().toLowerCase();
-            const cards = Array.from(document.querySelectorAll('#hotels .mobile-snap-card, #transport .mobile-snap-card, #home-services .mobile-snap-card'));
-            let matches = 0;
-
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                const serviceMatch = !service || service.split(/\s+/).every(term => text.includes(term));
-                const areaMatch = !area || text.includes(area);
-                const visible = serviceMatch && areaMatch;
-                card.classList.toggle('hidden', !visible);
-                if (visible) matches++;
-            });
-
-            ['hotels', 'transport', 'home-services'].forEach(id => {
-                const section = document.getElementById(id);
-                if (!section) return;
-                const visibleCards = section.querySelectorAll('.mobile-snap-card:not(.hidden)').length;
-                section.classList.toggle('hidden', visibleCards === 0);
-            });
-
-            showToast(matches
-                ? `Showing ${matches} matching service ${matches === 1 ? 'listing' : 'listings'}.`
-                : 'No matching sample listings. Try another service or area.');
+            if (typeof window.gbLiveTriggerSearch === 'function') {
+                window.gbLiveTriggerSearch();
+                return;
+            }
         }
 
         function showDetails(serviceTitle) {
