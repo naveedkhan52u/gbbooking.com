@@ -93,7 +93,7 @@ if(mode==='signup'){
 const {data,error}=await gbSupabase.auth.signUp({email,password:password.value,options:{data:{full_name:fullName,role},emailRedirectTo:SIGNUP_REDIRECT_URL}});
 if(error)throw error;
 if(data.session){location.href=role==='provider'?'/provider-dashboard.html':'/dashboard.html';return;}
-showNotice('Account created. Check your email and open the confirmation link to activate your account. If the link expires, use the button below to send a fresh one.');document.getElementById('resendConfirmation').classList.remove('hidden');
+if(!data.session)throw new Error('Account created, but email confirmation is still enabled in Supabase. Disable Confirm email in Authentication settings and try again.');location.href=role==='provider'?'/provider-dashboard.html':'/dashboard.html';return;
 }else{
 const {data,error}=await gbSupabase.auth.signInWithPassword({email,password:password.value});if(error)throw error;
 const {data:profile,error:profileError}=await gbSupabase.from('profiles').select('role').eq('id',data.user.id).maybeSingle();
