@@ -15,7 +15,7 @@
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-9">
 <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7">
 <div><p class="text-xs font-bold uppercase tracking-wider text-gbBlue">Customer account</p><h1 class="mt-1 text-2xl sm:text-3xl font-extrabold text-gray-900">Welcome, <span id="userName">Customer</span></h1><p class="mt-1 text-sm text-gray-500">Manage your bookings in one place.</p></div>
-<a href="index.html" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gbBlue hover:bg-gbBlueDark text-white px-4 py-2.5 text-sm font-bold shadow-sm"><i class="fa-solid fa-plus"></i> Book a Service</a>
+<div class="flex flex-wrap items-center gap-2"><a href="/index.html" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gbBlue hover:bg-gbBlueDark text-white px-4 py-2.5 text-sm font-bold shadow-sm"><i class="fa-solid fa-plus"></i> Book a Service</a><button id="customerLogout" type="button" class="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2.5 text-sm font-bold"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button></div>
 </header>
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
 <div class="rounded-2xl bg-white border border-gray-200 p-4 flex items-center gap-3"><span class="w-10 h-10 rounded-xl bg-blue-50 text-gbBlue flex items-center justify-center"><i class="fa-solid fa-calendar-check"></i></span><div><p class="text-xs text-gray-500">New bookings</p><p id="newCount" class="text-xl font-extrabold">2</p></div></div>
@@ -60,6 +60,9 @@ render();
  const {data:profile}=await sb.from('profiles').select('role,full_name').eq('id',session.user.id).maybeSingle();
  if(profile?.role==='provider'){location.replace('/provider-dashboard.html');return;}
  if(profile?.role==='admin'){location.replace('/admin/dashboard.html');return;}
+ if(profile?.role!=='customer'){location.replace('/login.html');return;}
+ const logoutButton=document.getElementById('customerLogout');
+ logoutButton?.addEventListener('click',async()=>{logoutButton.disabled=true;logoutButton.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Logging out…';const {error}=await sb.auth.signOut({scope:'local'});if(error){alert('Could not log out: '+error.message);logoutButton.disabled=false;logoutButton.innerHTML='<i class="fa-solid fa-right-from-bracket"></i> Log Out';return;}location.replace('/login.html');});
  document.getElementById('userName').textContent=profile?.full_name||session.user.user_metadata?.full_name||session.user.email?.split('@')[0]||'Customer';
  function formatDate(v){if(!v)return 'Not scheduled';const d=new Date(v);return d.toLocaleDateString('en-PK',{day:'numeric',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});}
  async function load(){
