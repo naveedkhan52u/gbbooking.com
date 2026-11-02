@@ -63,7 +63,14 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-    </style>
+    
+        /* Keep live provider listings visible and usable on phones, tablets, and desktop. */
+        .live-provider-grid { display: grid !important; grid-template-columns: minmax(0, 1fr); width: 100%; min-width: 0; gap: 1rem; }
+        .live-provider-grid > article { display: flex; min-width: 0; width: 100%; max-width: 100%; }
+        .live-provider-grid img { display: block; max-width: 100%; }
+        @media (min-width: 640px) { .live-provider-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (min-width: 1024px) { .live-provider-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>
 <link rel="stylesheet" href="/assets/css/shared-layout.css?v=20261101-fix2">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -350,7 +357,7 @@
                 </div>
 
                 <!-- Live provider listings are loaded from approved Supabase records. -->
-<div id="live-accommodation-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"><p class="text-sm text-gray-500 col-span-full py-6 text-center">Loading approved provider listings…</p></div></section>
+<div id="live-accommodation-grid" class="live-provider-grid grid md:grid-cols-2 xl:grid-cols-3 gap-4"><p class="text-sm text-gray-500 col-span-full py-6 text-center">Loading approved provider listings…</p></div></section>
 
             <!-- CATEGORY 2: TRANSPORT & TRAVEL -->
             <section id="tourism-travel" class="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-sm">
@@ -373,7 +380,7 @@
                 </div>
 
                 <!-- Live provider listings are loaded from approved Supabase records. -->
-<div id="live-tourism-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"><p class="text-sm text-gray-500 col-span-full py-6 text-center">Loading approved provider listings…</p></div></section>
+<div id="live-tourism-grid" class="live-provider-grid grid md:grid-cols-2 xl:grid-cols-3 gap-4"><p class="text-sm text-gray-500 col-span-full py-6 text-center">Loading approved provider listings…</p></div></section>
 
             <!-- CATEGORY 3: HOME SERVICES -->
             <section id="home-services" class="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-sm">
@@ -396,7 +403,7 @@
                 </div>
 
                 <!-- Live provider listings are loaded from approved Supabase records. -->
-<div id="live-home-services-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"><p class="text-sm text-gray-500 col-span-full py-6 text-center">Loading approved provider listings…</p></div></section>
+<div id="live-home-services-grid" class="live-provider-grid grid md:grid-cols-2 xl:grid-cols-3 gap-4"><p class="text-sm text-gray-500 col-span-full py-6 text-center">Loading approved provider listings…</p></div></section>
 
         </div>
 
