@@ -105,7 +105,7 @@
                         <!-- Banner 2: Transport & Car Rentals -->
                         <div class="min-w-full h-full relative flex items-center" style="background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;">
                             <div class="px-5 sm:px-8 w-full max-w-2xl">
-                                <span class="inline-block bg-gbBlue text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full mb-2">Transport & Travel</span>
+                                <span class="inline-block bg-gbBlue text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full mb-2">Tourism & Travel</span>
                                 <h1 class="text-xl sm:text-2xl lg:text-3xl font-extrabold leading-snug drop-shadow">
                                     4x4 Jeeps & Reliable Travel Rentals
                                 </h1>
@@ -113,7 +113,7 @@
                                     Traverse the Karakoram Highway, Deosai Plains, and Hunza Valley comfortably.
                                 </p>
                                 <div class="mt-4">
-                                    <a href="#transport" class="inline-flex items-center space-x-1.5 bg-gbGreen hover:bg-gbGreenDark text-white font-bold px-4 py-2 rounded-lg text-xs shadow transition transform hover:scale-105">
+                                    <a href="#tourism-travel" class="inline-flex items-center space-x-1.5 bg-gbGreen hover:bg-gbGreenDark text-white font-bold px-4 py-2 rounded-lg text-xs shadow transition transform hover:scale-105">
                                         <span>Reserve Vehicle</span>
                                         <i class="fa-solid fa-car text-[10px]"></i>
                                     </a>
@@ -272,7 +272,7 @@
                     </a>
 
                     <!-- 2. Transport & Travel -->
-                    <a href="#transport" class="group flex flex-col items-center flex-1 lg:flex-none">
+                    <a href="#tourism-travel" class="group flex flex-col items-center flex-1 lg:flex-none">
                         <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-green-100 group-hover:bg-gbGreen text-gbGreen group-hover:text-white flex items-center justify-center shadow-sm transition-all duration-300 transform group-hover:scale-105">
                             <i class="fa-solid fa-bus text-base sm:text-xl"></i>
                         </div>
@@ -349,92 +349,11 @@
                     </button>
                 </div>
 
-                <!-- Provider Cards Layout: Swipe on Mobile/Tablet, 3 Grid on Desktop -->
-                <div class="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto mobile-snap-scroll md:overflow-visible pb-3 md:pb-0">
-                    
-                    <!-- Provider Card 1 -->
-                    <div class="mobile-snap-card min-w-[85%] sm:min-w-[65%] md:min-w-0 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="relative h-40 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80" alt="Serena Hotel" class="w-full h-full object-cover">
-                                <span class="absolute top-2 right-2 bg-gbGreen text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Verified</span>
-                            </div>
-                            <div class="p-4">
-                                <div class="text-[10px] text-gbBlue font-extrabold uppercase tracking-wide">Shangrila Resort</div>
-                                <h4 class="font-bold text-sm text-gray-900 mt-0.5">Executive Lake View Suite</h4>
-                                <div class="flex items-center text-xs text-gray-500 mt-2">
-                                    <i class="fa-solid fa-location-dot text-gbOrange mr-1.5"></i>
-                                    <span>Lower Kachura Lake, Skardu</span>
-                                </div>
-                                <div class="mt-3 flex items-baseline justify-between">
-                                    <span class="text-xs text-gray-500">Starts from</span>
-                                    <span class="text-base font-extrabold text-gbGreen">PKR 18,500 <span class="text-[10px] text-gray-500 font-normal">/ night</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0 grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="showDetails('Shangrila Resort - Executive Lake View Suite')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold py-2 rounded-lg transition text-center">Details</button>
-                            <button onclick="bookNow('Shangrila Resort - Executive Lake View Suite')" class="bg-gbGreen hover:bg-gbGreenDark text-white text-xs font-bold py-2 rounded-lg shadow transition text-center">Book</button>
-                        </div>
-                    </div>
-
-                    <!-- Provider Card 2 -->
-                    <div class="mobile-snap-card min-w-[85%] sm:min-w-[65%] md:min-w-0 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="relative h-40 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=500&q=80" alt="Hunza Serena Hotel" class="w-full h-full object-cover">
-                                <span class="absolute top-2 right-2 bg-gbGreen text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Verified</span>
-                            </div>
-                            <div class="p-4">
-                                <div class="text-[10px] text-gbBlue font-extrabold uppercase tracking-wide">Hunza Serena Inn</div>
-                                <h4 class="font-bold text-sm text-gray-900 mt-0.5">Heritage Royal Room</h4>
-                                <div class="flex items-center text-xs text-gray-500 mt-2">
-                                    <i class="fa-solid fa-location-dot text-gbOrange mr-1.5"></i>
-                                    <span>Karimabad, Hunza Valley</span>
-                                </div>
-                                <div class="mt-3 flex items-baseline justify-between">
-                                    <span class="text-xs text-gray-500">Starts from</span>
-                                    <span class="text-base font-extrabold text-gbGreen">PKR 22,000 <span class="text-[10px] text-gray-500 font-normal">/ night</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0 grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="showDetails('Hunza Serena Inn - Heritage Royal Room')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold py-2 rounded-lg transition text-center">Details</button>
-                            <button onclick="bookNow('Hunza Serena Inn - Heritage Royal Room')" class="bg-gbGreen hover:bg-gbGreenDark text-white text-xs font-bold py-2 rounded-lg shadow transition text-center">Book</button>
-                        </div>
-                    </div>
-
-                    <!-- Provider Card 3 -->
-                    <div class="mobile-snap-card min-w-[85%] sm:min-w-[65%] md:min-w-0 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="relative h-40 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=500&q=80" alt="Gilgit Continental" class="w-full h-full object-cover">
-                                <span class="absolute top-2 right-2 bg-gbGreen text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Verified</span>
-                            </div>
-                            <div class="p-4">
-                                <div class="text-[10px] text-gbBlue font-extrabold uppercase tracking-wide">Gilgit Gateway Hotel</div>
-                                <h4 class="font-bold text-sm text-gray-900 mt-0.5">Deluxe Family Room</h4>
-                                <div class="flex items-center text-xs text-gray-500 mt-2">
-                                    <i class="fa-solid fa-location-dot text-gbOrange mr-1.5"></i>
-                                    <span>Jubilee Chowk, Gilgit</span>
-                                </div>
-                                <div class="mt-3 flex items-baseline justify-between">
-                                    <span class="text-xs text-gray-500">Starts from</span>
-                                    <span class="text-base font-extrabold text-gbGreen">PKR 12,000 <span class="text-[10px] text-gray-500 font-normal">/ night</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0 grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="showDetails('Gilgit Gateway Hotel - Deluxe Family Room')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold py-2 rounded-lg transition text-center">Details</button>
-                            <button onclick="bookNow('Gilgit Gateway Hotel - Deluxe Family Room')" class="bg-gbGreen hover:bg-gbGreenDark text-white text-xs font-bold py-2 rounded-lg shadow transition text-center">Book</button>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
+                <!-- Live provider listings are loaded from approved Supabase records. -->
+<div id="live-accommodation-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"><p class="text-sm text-gray-500 col-span-full py-6 text-center">Loading approved provider listings…</p></div></section>
 
             <!-- CATEGORY 2: TRANSPORT & TRAVEL -->
-            <section id="transport" class="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-sm">
+            <section id="tourism-travel" class="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-sm">
                 <div class="flex items-center justify-between pb-4 border-b mb-6">
                     <div class="flex items-center space-x-2">
                         <div class="w-8 h-8 rounded-lg bg-green-100 text-gbGreen flex items-center justify-center">
@@ -442,100 +361,19 @@
                         </div>
                         <div>
                             <!-- Category title 10px on mobile/tablet -->
-                            <h3 class="text-[10px] sm:text-xl font-bold text-gray-900 leading-tight">Transport & Vehicle Providers</h3>
+                            <h3 class="text-[10px] sm:text-xl font-bold text-gray-900 leading-tight">Tourism & Travel Providers</h3>
                             <p class="text-[9px] sm:text-xs text-gray-500 hidden sm:block">4x4 Jeeps, Hiace Vans & Luxury Cars for Mountain Expeditions</p>
                         </div>
                     </div>
                     <!-- View All button replacement -->
-                    <button onclick="showToast('Loading all Transport Providers')" class="text-[10px] sm:text-xs font-bold text-gbBlue hover:text-gbBlueDark border border-gbBlue/30 hover:border-gbBlue bg-blue-50 px-3 py-1.5 rounded-lg transition flex items-center space-x-1">
+                    <button onclick="showToast('Loading all Tourism & Travel Providers')" class="text-[10px] sm:text-xs font-bold text-gbBlue hover:text-gbBlueDark border border-gbBlue/30 hover:border-gbBlue bg-blue-50 px-3 py-1.5 rounded-lg transition flex items-center space-x-1">
                         <span>View All</span>
                         <i class="fa-solid fa-chevron-right text-[8px]"></i>
                     </button>
                 </div>
 
-                <!-- Provider Cards Layout: Swipe on Mobile/Tablet, 3 Grid on Desktop -->
-                <div class="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto mobile-snap-scroll md:overflow-visible pb-3 md:pb-0">
-                    
-                    <!-- Provider Card 1 -->
-                    <div class="mobile-snap-card min-w-[85%] sm:min-w-[65%] md:min-w-0 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="relative h-40 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=500&q=80" alt="Karakoram Jeep Services" class="w-full h-full object-cover">
-                                <span class="absolute top-2 right-2 bg-gbGreen text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Verified</span>
-                            </div>
-                            <div class="p-4">
-                                <div class="text-[10px] text-gbBlue font-extrabold uppercase tracking-wide">Karakoram Travels</div>
-                                <h4 class="font-bold text-sm text-gray-900 mt-0.5">Prado TZ 4x4 Off-Road Jeep</h4>
-                                <div class="flex items-center text-xs text-gray-500 mt-2">
-                                    <i class="fa-solid fa-location-dot text-gbOrange mr-1.5"></i>
-                                    <span>Skardu to Deosai Plains</span>
-                                </div>
-                                <div class="mt-3 flex items-baseline justify-between">
-                                    <span class="text-xs text-gray-500">Day Rate</span>
-                                    <span class="text-base font-extrabold text-gbGreen">PKR 15,000 <span class="text-[10px] text-gray-500 font-normal">/ day</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0 grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="showDetails('Karakoram Travels - Prado TZ 4x4')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold py-2 rounded-lg transition text-center">Details</button>
-                            <button onclick="bookNow('Karakoram Travels - Prado TZ 4x4')" class="bg-gbGreen hover:bg-gbGreenDark text-white text-xs font-bold py-2 rounded-lg shadow transition text-center">Book</button>
-                        </div>
-                    </div>
-
-                    <!-- Provider Card 2 -->
-                    <div class="mobile-snap-card min-w-[85%] sm:min-w-[65%] md:min-w-0 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="relative h-40 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1570125909222-49930c6d7220?auto=format&fit=crop&w=500&q=80" alt="Hunza Express Van" class="w-full h-full object-cover">
-                                <span class="absolute top-2 right-2 bg-gbGreen text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Verified</span>
-                            </div>
-                            <div class="p-4">
-                                <div class="text-[10px] text-gbBlue font-extrabold uppercase tracking-wide">Hunza Express Logistics</div>
-                                <h4 class="font-bold text-sm text-gray-900 mt-0.5">Toyota Grand Cabin (13 Seater)</h4>
-                                <div class="flex items-center text-xs text-gray-500 mt-2">
-                                    <i class="fa-solid fa-location-dot text-gbOrange mr-1.5"></i>
-                                    <span>Gilgit to Hunza / Khunjerab</span>
-                                </div>
-                                <div class="mt-3 flex items-baseline justify-between">
-                                    <span class="text-xs text-gray-500">Day Rate</span>
-                                    <span class="text-base font-extrabold text-gbGreen">PKR 18,000 <span class="text-[10px] text-gray-500 font-normal">/ day</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0 grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="showDetails('Hunza Express Logistics - Grand Cabin')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold py-2 rounded-lg transition text-center">Details</button>
-                            <button onclick="bookNow('Hunza Express Logistics - Grand Cabin')" class="bg-gbGreen hover:bg-gbGreenDark text-white text-xs font-bold py-2 rounded-lg shadow transition text-center">Book</button>
-                        </div>
-                    </div>
-
-                    <!-- Provider Card 3 -->
-                    <div class="mobile-snap-card min-w-[85%] sm:min-w-[65%] md:min-w-0 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="relative h-40 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=500&q=80" alt="Gilgit Rent A Car" class="w-full h-full object-cover">
-                                <span class="absolute top-2 right-2 bg-gbGreen text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Verified</span>
-                            </div>
-                            <div class="p-4">
-                                <div class="text-[10px] text-gbBlue font-extrabold uppercase tracking-wide">Baltistan Cabs</div>
-                                <h4 class="font-bold text-sm text-gray-900 mt-0.5">Corolla GLi with Driver</h4>
-                                <div class="flex items-center text-xs text-gray-500 mt-2">
-                                    <i class="fa-solid fa-location-dot text-gbOrange mr-1.5"></i>
-                                    <span>Airport Pick & Drop, Gilgit</span>
-                                </div>
-                                <div class="mt-3 flex items-baseline justify-between">
-                                    <span class="text-xs text-gray-500">Fixed Trip</span>
-                                    <span class="text-base font-extrabold text-gbGreen">PKR 6,500 <span class="text-[10px] text-gray-500 font-normal">/ trip</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0 grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="showDetails('Baltistan Cabs - Corolla GLi')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold py-2 rounded-lg transition text-center">Details</button>
-                            <button onclick="bookNow('Baltistan Cabs - Corolla GLi')" class="bg-gbGreen hover:bg-gbGreenDark text-white text-xs font-bold py-2 rounded-lg shadow transition text-center">Book</button>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
+                <!-- Live provider listings are loaded from approved Supabase records. -->
+<div id="live-tourism-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"><p class="text-sm text-gray-500 col-span-full py-6 text-center">Loading approved provider listings…</p></div></section>
 
             <!-- CATEGORY 3: HOME SERVICES -->
             <section id="home-services" class="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-sm">
@@ -557,89 +395,8 @@
                     </button>
                 </div>
 
-                <!-- Provider Cards Layout: Swipe on Mobile/Tablet, 3 Grid on Desktop -->
-                <div class="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto mobile-snap-scroll md:overflow-visible pb-3 md:pb-0">
-                    
-                    <!-- Provider Card 1 -->
-                    <div class="mobile-snap-card min-w-[85%] sm:min-w-[65%] md:min-w-0 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="relative h-40 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=500&q=80" alt="Electrician Service" class="w-full h-full object-cover">
-                                <span class="absolute top-2 right-2 bg-gbGreen text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Verified</span>
-                            </div>
-                            <div class="p-4">
-                                <div class="text-[10px] text-gbBlue font-extrabold uppercase tracking-wide">Gilgit Smart Care</div>
-                                <h4 class="font-bold text-sm text-gray-900 mt-0.5">Solar & Electrical Installation</h4>
-                                <div class="flex items-center text-xs text-gray-500 mt-2">
-                                    <i class="fa-solid fa-location-dot text-gbOrange mr-1.5"></i>
-                                    <span>Naya Bazaar & Surrounding, Gilgit</span>
-                                </div>
-                                <div class="mt-3 flex items-baseline justify-between">
-                                    <span class="text-xs text-gray-500">Visit Fee</span>
-                                    <span class="text-base font-extrabold text-gbGreen">PKR 1,500 <span class="text-[10px] text-gray-500 font-normal">/ visit</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0 grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="showDetails('Gilgit Smart Care - Solar & Electrical')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold py-2 rounded-lg transition text-center">Details</button>
-                            <button onclick="bookNow('Gilgit Smart Care - Solar & Electrical')" class="bg-gbGreen hover:bg-gbGreenDark text-white text-xs font-bold py-2 rounded-lg shadow transition text-center">Book</button>
-                        </div>
-                    </div>
-
-                    <!-- Provider Card 2 -->
-                    <div class="mobile-snap-card min-w-[85%] sm:min-w-[65%] md:min-w-0 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="relative h-40 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=500&q=80" alt="Plumbing Specialist" class="w-full h-full object-cover">
-                                <span class="absolute top-2 right-2 bg-gbGreen text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Verified</span>
-                            </div>
-                            <div class="p-4">
-                                <div class="text-[10px] text-gbBlue font-extrabold uppercase tracking-wide">Baltistan Plumbing Experts</div>
-                                <h4 class="font-bold text-sm text-gray-900 mt-0.5">Emergency Pipe Repair & Geyser</h4>
-                                <div class="flex items-center text-xs text-gray-500 mt-2">
-                                    <i class="fa-solid fa-location-dot text-gbOrange mr-1.5"></i>
-                                    <span>Hussainabad, Skardu</span>
-                                </div>
-                                <div class="mt-3 flex items-baseline justify-between">
-                                    <span class="text-xs text-gray-500">Visit Fee</span>
-                                    <span class="text-base font-extrabold text-gbGreen">PKR 1,200 <span class="text-[10px] text-gray-500 font-normal">/ visit</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0 grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="showDetails('Baltistan Plumbing Experts')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold py-2 rounded-lg transition text-center">Details</button>
-                            <button onclick="bookNow('Baltistan Plumbing Experts')" class="bg-gbGreen hover:bg-gbGreenDark text-white text-xs font-bold py-2 rounded-lg shadow transition text-center">Book</button>
-                        </div>
-                    </div>
-
-                    <!-- Provider Card 3 -->
-                    <div class="mobile-snap-card min-w-[85%] sm:min-w-[65%] md:min-w-0 bg-gray-50 rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="relative h-40 bg-gray-200">
-                                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=500&q=80" alt="Carpentry Services" class="w-full h-full object-cover">
-                                <span class="absolute top-2 right-2 bg-gbGreen text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Verified</span>
-                            </div>
-                            <div class="p-4">
-                                <div class="text-[10px] text-gbBlue font-extrabold uppercase tracking-wide">Hunza Wood Crafters</div>
-                                <h4 class="font-bold text-sm text-gray-900 mt-0.5">Custom Woodworking & Doors</h4>
-                                <div class="flex items-center text-xs text-gray-500 mt-2">
-                                    <i class="fa-solid fa-location-dot text-gbOrange mr-1.5"></i>
-                                    <span>Aliabad, Hunza</span>
-                                </div>
-                                <div class="mt-3 flex items-baseline justify-between">
-                                    <span class="text-xs text-gray-500">Starting at</span>
-                                    <span class="text-base font-extrabold text-gbGreen">PKR 2,500 <span class="text-[10px] text-gray-500 font-normal">/ job</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0 grid grid-cols-2 gap-2 mt-2">
-                            <button onclick="showDetails('Hunza Wood Crafters')" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold py-2 rounded-lg transition text-center">Details</button>
-                            <button onclick="bookNow('Hunza Wood Crafters')" class="bg-gbGreen hover:bg-gbGreenDark text-white text-xs font-bold py-2 rounded-lg shadow transition text-center">Book</button>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
+                <!-- Live provider listings are loaded from approved Supabase records. -->
+<div id="live-home-services-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"><p class="text-sm text-gray-500 col-span-full py-6 text-center">Loading approved provider listings…</p></div></section>
 
         </div>
 
@@ -675,12 +432,67 @@
 
     </main>
 
+
+<div id="bookingModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-gray-950/60 p-3 sm:p-5" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle"><div class="w-full max-w-xl max-h-[92vh] overflow-y-auto rounded-2xl bg-white shadow-2xl"><div class="sticky top-0 z-10 flex items-start justify-between gap-3 border-b bg-white px-5 py-4"><div><p class="text-[10px] font-extrabold uppercase tracking-widest text-gbOrange">Booking request</p><h2 id="bookingModalTitle" class="mt-1 text-lg font-extrabold text-gray-900">Book a service</h2><p id="bookingModalSubtitle" class="mt-1 text-xs text-gray-500"></p></div><button id="closeBookingModal" type="button" class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-600" aria-label="Close booking form"><i class="fa-solid fa-xmark"></i></button></div><form id="liveBookingForm" class="space-y-4 p-5"><div id="bookingProviderSummary" class="rounded-xl bg-blue-50 p-3 text-sm"></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><div><label class="mb-1 block text-xs font-bold text-gray-600">Full name *</label><input id="bookingCustomerName" required maxlength="120" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm" autocomplete="name"></div><div><label class="mb-1 block text-xs font-bold text-gray-600">Phone number *</label><input id="bookingCustomerPhone" required maxlength="24" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm" autocomplete="tel" inputmode="tel"></div></div><div id="bookingCategoryFields" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div><div><label class="mb-1 block text-xs font-bold text-gray-600">Additional details</label><textarea id="bookingCustomerNotes" rows="3" maxlength="1500" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm" placeholder="Share any special requirements (optional)"></textarea></div><p id="bookingFormNotice" class="hidden rounded-xl px-3 py-2.5 text-xs font-semibold" role="status"></p><button id="submitBooking" type="submit" class="w-full rounded-xl bg-gbGreen px-4 py-3 text-sm font-extrabold text-white hover:bg-gbGreenDark"><i class="fa-solid fa-calendar-check mr-2"></i>Submit Booking Request</button><p class="text-center text-[10px] text-gray-500">No advance payment is required to submit a booking request.</p></form></div></div>
     <!-- SHARED MASTER MOBILE/TABLET BOTTOM NAVIGATION -->
 <div data-shared-component="mobile-bottom-nav"></div>
 
     <!-- SHARED MASTER FOOTER -->
 <div data-shared-component="footer"></div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/assets/js/supabase-client.js"></script><script>
+(function(){
+const sb=window.gbSupabase;if(!sb)return;
+const grids={Accommodation:'live-accommodation-grid','Tourism & Travel':'live-tourism-grid','Home Services':'live-home-services-grid'};
+const sections={Accommodation:'hotels','Tourism & Travel':'tourism-travel','Home Services':'home-services'};
+let liveListings=[],selectedListing=null,activeSession=null;
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const unitLabels={fixed:'fixed price',per_hour:'hour',per_day:'day',per_night:'night',per_month:'month'};
+function amount(item){return 'PKR '+Number(item.price||0).toLocaleString('en-PK')+' / '+(unitLabels[item.pricing_unit]||item.pricing_unit||'service');}
+function renderListing(item){
+const image=item.image_paths?.[0]?sb.storage.from('provider-service-images').getPublicUrl(item.image_paths[0]).data.publicUrl:'';
+const category=item.service?.category?.name||'',service=item.service?.name||'Service',region=item.region?.name||'Gilgit-Baltistan';
+return '<article class="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"><div class="relative h-44 bg-gray-100">'+(image?'<img src="'+esc(image)+'" alt="'+esc(item.title)+'" loading="lazy" class="h-full w-full object-cover">':'<div class="flex h-full items-center justify-center text-4xl text-gray-300"><i class="fa-solid fa-house"></i></div>')+'<span class="absolute right-3 top-3 rounded-full bg-emerald-600 px-2.5 py-1 text-[9px] font-extrabold uppercase text-white">Verified</span></div><div class="flex flex-1 flex-col p-4"><p class="text-[10px] font-extrabold uppercase tracking-wide text-gbBlue">'+esc(item.provider?.business_name||'Verified Provider')+'</p><h4 class="mt-1 text-sm font-extrabold text-gray-900">'+esc(item.title)+'</h4><p class="mt-1 text-xs text-gray-500">'+esc(service)+' · '+esc(region)+'</p><p class="mt-2 line-clamp-3 text-xs leading-5 text-gray-600">'+esc(item.description||'Provider listing approved by GBbooking.')+'</p><div class="mt-auto flex items-center justify-between gap-2 pt-4"><p class="text-sm font-extrabold text-gbGreen">'+amount(item)+'</p><button type="button" data-book-listing="'+esc(item.id)+'" class="rounded-lg bg-gbGreen px-4 py-2 text-xs font-extrabold text-white hover:bg-gbGreenDark">Book</button></div></div></article>';
+}
+function paintListings(){
+Object.entries(grids).forEach(([category,id])=>{const host=$(id);if(!host)return;const rows=liveListings.filter(x=>x.service?.category?.name===category);host.innerHTML=rows.length?rows.map(renderListing).join(''):'<div class="col-span-full rounded-xl border border-dashed border-gray-300 bg-gray-50 px-4 py-8 text-center"><p class="text-sm font-semibold text-gray-500">No approved listings in this category yet.</p><p class="mt-1 text-xs text-gray-400">New provider listings appear here after admin approval.</p></div>';});
+}
+async function loadListings(){
+const {data,error}=await sb.from('provider_services').select('id,title,description,price,pricing_unit,image_paths,address,service:services(name,category:categories(name)),region:regions(name),provider:provider_profiles!inner(business_name,status)').eq('is_active',true).eq('verification_status','approved');
+if(error){console.error('[GBbooking live listings]',error);Object.values(grids).forEach(id=>{if($(id))$(id).innerHTML='<p class="col-span-full py-6 text-center text-sm text-red-600">Could not load live provider listings. Please refresh.</p>';});return;}
+liveListings=(data||[]).filter(x=>x.provider?.status==='approved'&&grids[x.service?.category?.name]);paintListings();
+}
+function fieldsFor(category){
+const commonDate='<div><label class="mb-1 block text-xs font-bold text-gray-600">Preferred date *</label><input id="bookingDate" type="date" required min="'+new Date().toISOString().slice(0,10)+'" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm"></div><div><label class="mb-1 block text-xs font-bold text-gray-600">Preferred time</label><input id="bookingTime" type="time" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm"></div>';
+if(category==='Accommodation')return '<div><label class="mb-1 block text-xs font-bold text-gray-600">Check-in *</label><input id="bookingDate" type="date" required min="'+new Date().toISOString().slice(0,10)+'" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm"></div><div><label class="mb-1 block text-xs font-bold text-gray-600">Check-out *</label><input id="bookingCheckout" type="date" required class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm"></div><div><label class="mb-1 block text-xs font-bold text-gray-600">Guests *</label><input id="bookingGuests" type="number" min="1" max="50" value="2" required class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm"></div>';
+if(category==='Tourism & Travel')return commonDate+'<div><label class="mb-1 block text-xs font-bold text-gray-600">Destination / itinerary *</label><input id="bookingDestination" required maxlength="200" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm" placeholder="Where would you like to go?"></div><div><label class="mb-1 block text-xs font-bold text-gray-600">Group size *</label><input id="bookingGuests" type="number" min="1" max="100" value="1" required class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm"></div>';
+return commonDate+'<div class="sm:col-span-2"><label class="mb-1 block text-xs font-bold text-gray-600">Service address *</label><input id="bookingAddress" required maxlength="250" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm" placeholder="House, street, area, city"></div>';
+}
+function openBooking(item){
+selectedListing=item;const category=item.service?.category?.name||'Home Services';
+$('bookingModalTitle').textContent='Book '+item.title;$('bookingModalSubtitle').textContent=category;
+$('bookingProviderSummary').innerHTML='<p class="font-extrabold text-gray-900">'+esc(item.provider?.business_name||'Verified Provider')+'</p><p class="mt-1 text-xs text-gray-600">'+esc(item.service?.name||'')+' · '+esc(item.region?.name||'')+'</p><p class="mt-2 font-extrabold text-gbGreen">'+amount(item)+'</p>';
+$('bookingCategoryFields').innerHTML=fieldsFor(category);$('bookingFormNotice').classList.add('hidden');
+$('bookingModal').classList.remove('hidden');$('bookingModal').classList.add('flex');document.body.style.overflow='hidden';$('bookingCustomerName').focus();
+}
+function closeBooking(){ $('bookingModal').classList.add('hidden');$('bookingModal').classList.remove('flex');document.body.style.overflow='';selectedListing=null;}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-book-listing]');if(b){const item=liveListings.find(x=>x.id===b.dataset.bookListing);if(item)openBooking(item);}});
+$('closeBookingModal').addEventListener('click',closeBooking);$('bookingModal').addEventListener('click',e=>{if(e.target===$('bookingModal'))closeBooking();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('bookingModal').classList.contains('hidden'))closeBooking();});
+sb.auth.getSession().then(({data})=>{activeSession=data.session||null;if(activeSession){sb.from('profiles').select('full_name,phone').eq('id',activeSession.user.id).maybeSingle().then(({data:p})=>{if(p){if(p.full_name)$('bookingCustomerName').value=p.full_name;if(p.phone)$('bookingCustomerPhone').value=p.phone;}});}});
+$('liveBookingForm').addEventListener('submit',async e=>{e.preventDefault();const notice=$('bookingFormNotice'),button=$('submitBooking');const say=(msg,bad=false)=>{notice.textContent=msg;notice.className='block rounded-xl px-3 py-2.5 text-xs font-semibold '+(bad?'bg-red-50 text-red-700':'bg-emerald-50 text-emerald-800');};const {data:{session}}=await sb.auth.getSession();if(!session){location.href='/login.html?redirect='+encodeURIComponent('/');return;}if(!selectedListing)return;
+const category=selectedListing.service?.category?.name||'Home Services';const date=$('bookingDate')?.value||'',time=$('bookingTime')?.value||'';if(!date){say('Choose your preferred date.',true);return;}
+if(category==='Accommodation'&&$('bookingCheckout').value<=date){say('Check-out must be after check-in.',true);return;}
+let details=[];if(category==='Accommodation')details.push('Check-out: '+$('bookingCheckout').value,'Guests: '+$('bookingGuests').value);else if(category==='Tourism & Travel')details.push('Destination: '+$('bookingDestination').value,'Group size: '+$('bookingGuests').value);else details.push('Service address: '+$('bookingAddress').value);
+const extra=$('bookingCustomerNotes').value.trim();if(extra)details.push('Customer notes: '+extra);
+button.disabled=true;button.textContent='Submitting request…';
+try{const scheduled=new Date(date+'T'+(time||'12:00')+':00+05:00').toISOString();const {error}=await sb.from('bookings').insert({customer_user_id:session.user.id,customer_name:$('bookingCustomerName').value.trim(),customer_phone:$('bookingCustomerPhone').value.trim(),provider_service_id:selectedListing.id,scheduled_at:scheduled,customer_notes:details.join('\n')||null});if(error)throw error;say('Booking request submitted. The provider and GBbooking team can now review it.');button.textContent='Request submitted';setTimeout(closeBooking,1600);}catch(err){say(err.message||'Could not submit your booking request.',true);button.disabled=false;button.innerHTML='<i class="fa-solid fa-calendar-check mr-2"></i>Submit Booking Request';}
+});
+window.triggerSearch=function(){const service=($('serviceInput')?.value||'').trim().toLowerCase(),area=($('areaSelect')?.value||'').trim().toLowerCase();let count=0;document.querySelectorAll('[data-book-listing]').forEach(btn=>{const card=btn.closest('article');const item=liveListings.find(x=>x.id===btn.dataset.bookListing);const text=(card?.textContent||'').toLowerCase();const serviceMatch=!service||service.split(/\s+/).every(term=>text.includes(term));const areaMatch=!area||(item?.region?.name||'').toLowerCase().includes(area);const visible=serviceMatch&&areaMatch;card?.classList.toggle('hidden',!visible);if(visible)count++;});Object.entries(grids).forEach(([category,id])=>{const host=$(id),section=$(sections[category]);const visible=host?.querySelectorAll('article:not(.hidden)').length||0;section?.classList.toggle('hidden',!!(service||area)&&visible===0);});showToast(count?('Showing '+count+' matching live listings.'):'No matching live listings. Try another service or area.');};
+loadListings();sb.channel('public-provider-services').on('postgres_changes',{event:'*',schema:'public',table:'provider_services'},loadListings).subscribe();
+})();
+</script>
     <script>
         // 2. Hero carousel: readable timing, accessible controls, and pause behavior
         let currentSlide = 0;
