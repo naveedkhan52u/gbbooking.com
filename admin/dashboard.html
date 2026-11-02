@@ -61,6 +61,7 @@ body{font-family:Inter,sans-serif}.admin-card{background:#fff;border:1px solid #
 <script src="/assets/js/layout.js?v=20261102-admin"></script>
 <script>
 (function(){
+try{localStorage.removeItem("gbbooking_provider_demo_bookings");}catch(_){}
 let bookings=[];
 function money(n){return 'PKR '+Number(n||0).toLocaleString('en-PK');}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
