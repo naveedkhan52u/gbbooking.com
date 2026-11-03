@@ -56,7 +56,7 @@ render();
 (async function(){
  const sb=window.gbSupabase;if(!sb)return;
  const {data:{session},error:authError}=await sb.auth.getSession();
- if(authError||!session){location.replace('/login.html');return;}
+ if(authError||!session){location.replace('/');return;}
  const {data:profile}=await sb.from('profiles').select('role,full_name').eq('id',session.user.id).maybeSingle();
  if(profile?.role==='provider'){location.replace('/provider-dashboard.html');return;}
  if(profile?.role==='admin'){location.replace('/admin/dashboard.html');return;}
