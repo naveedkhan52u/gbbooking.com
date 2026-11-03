@@ -467,9 +467,31 @@ function paintListings(){
 Object.entries(grids).forEach(([category,id])=>{const host=$(id);if(!host)return;const rows=liveListings.filter(x=>x.service?.category?.name===category);host.innerHTML=rows.length?rows.map(renderListing).join(''):'<div class="col-span-full rounded-xl border border-dashed border-gray-300 bg-gray-50 px-4 py-8 text-center"><p class="text-sm font-semibold text-gray-500">No approved listings in this category yet.</p><p class="mt-1 text-xs text-gray-400">New provider listings appear here after admin approval.</p></div>';});
 }
 async function loadListings(){
-const {data,error}=await sb.from('provider_services').select('id,title,description,price,pricing_unit,image_paths,address,service:services(name,category:categories(name)),region:regions(name),provider:provider_profiles!inner(business_name,status)').eq('is_active',true).eq('verification_status','approved');
-if(error){console.error('[GBbooking live listings]',error);Object.values(grids).forEach(id=>{if($(id))$(id).innerHTML='<p class="col-span-full py-6 text-center text-sm text-red-600">Could not load live provider listings. Please refresh.</p>';});return;}
-liveListings=(data||[]).filter(x=>x.provider?.status==='approved'&&grids[x.service?.category?.name]);paintListings();
+const hosts=Object.values(grids).map(id=>$(id)).filter(Boolean);
+hosts.forEach(host=>host.innerHTML='<p class="col-span-full py-6 text-center text-sm text-gray-500">Loading approved provider listings…</p>');
+try{
+const {data:servicesRows,error:servicesError}=await sb.from('provider_services').select('id,provider_user_id,service_id,region_id,title,description,price,pricing_unit,image_paths,address,is_active,verification_status').eq('is_active',true).eq('verification_status','approved');
+if(servicesError)throw servicesError;
+const rows=servicesRows||[];
+if(!rows.length){liveListings=[];paintListings();return;}
+const unique=key=>[...new Set(rows.map(x=>x[key]).filter(Boolean))];
+const [servicesResult,regionsResult,providersResult]=await Promise.all([
+sb.from('services').select('id,name,category_id').in('id',unique('service_id')),
+sb.from('regions').select('id,name').in('id',unique('region_id')),
+sb.from('provider_profiles').select('user_id,business_name,status').in('user_id',unique('provider_user_id'))
+]);
+if(servicesResult.error)throw servicesResult.error;if(regionsResult.error)throw regionsResult.error;if(providersResult.error)throw providersResult.error;
+const serviceRows=servicesResult.data||[],categoryIds=[...new Set(serviceRows.map(x=>x.category_id).filter(Boolean))];
+const categoriesResult=categoryIds.length?await sb.from('categories').select('id,name').in('id',categoryIds):{data:[],error:null};
+if(categoriesResult.error)throw categoriesResult.error;
+const byId=arr=>new Map((arr||[]).map(x=>[x.id,x]));
+const serviceMap=byId(serviceRows),regionMap=byId(regionsResult.data),providerMap=new Map((providersResult.data||[]).map(x=>[x.user_id,x])),categoryMap=byId(categoriesResult.data);
+liveListings=rows.map(row=>{const service=serviceMap.get(row.service_id),provider=providerMap.get(row.provider_user_id);return {...row,service:service?{...service,category:categoryMap.get(service.category_id)||null}:null,region:regionMap.get(row.region_id)||null,provider};}).filter(row=>row.provider?.status==='approved'&&grids[row.service?.category?.name]);
+paintListings();
+}catch(error){
+console.error('[GBbooking live listings]',error);
+hosts.forEach(host=>host.innerHTML='<div class="col-span-full rounded-xl border border-red-200 bg-red-50 px-4 py-6 text-center"><p class="text-sm font-semibold text-red-700">Provider listings could not be loaded.</p><button type="button" onclick="location.reload()" class="mt-2 text-xs font-bold underline text-red-700">Retry</button></div>');
+}
 }
 function fieldsFor(category){
 const commonDate='<div><label class="mb-1 block text-xs font-bold text-gray-600">Preferred date *</label><input id="bookingDate" type="date" required min="'+new Date().toISOString().slice(0,10)+'" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm"></div><div><label class="mb-1 block text-xs font-bold text-gray-600">Preferred time</label><input id="bookingTime" type="time" class="w-full rounded-xl border border-gray-300 px-3 py-2.5 text-sm"></div>';
